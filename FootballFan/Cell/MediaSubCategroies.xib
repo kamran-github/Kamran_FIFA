@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mediasubcell" id="Qd5-Vy-lKR" customClass="MediaSubCategoriesCell" customModule="FootballFan" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7D-tF-WNh">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_thumb" translatesAutoresizingMaskIntoConstraints="NO" id="wZj-5h-5Gk">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wZj-5h-5Gk" firstAttribute="leading" secondItem="I7D-tF-WNh" secondAttribute="leading" id="3Ae-Ij-Qfg"/>
+                            <constraint firstItem="wZj-5h-5Gk" firstAttribute="top" secondItem="I7D-tF-WNh" secondAttribute="top" id="5dS-ZD-NJa"/>
+                            <constraint firstAttribute="trailing" secondItem="wZj-5h-5Gk" secondAttribute="trailing" id="Jy5-Ca-fL8"/>
+                            <constraint firstAttribute="bottom" secondItem="wZj-5h-5Gk" secondAttribute="bottom" id="Oa3-6u-akC"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="I7D-tF-WNh" secondAttribute="bottom" id="KEZ-sj-mIJ"/>
+                <constraint firstItem="I7D-tF-WNh" firstAttribute="leading" secondItem="Qd5-Vy-lKR" secondAttribute="leading" id="NxX-6V-VJr"/>
+                <constraint firstItem="I7D-tF-WNh" firstAttribute="top" secondItem="Qd5-Vy-lKR" secondAttribute="top" id="abc-c4-O2t"/>
+                <constraint firstAttribute="trailing" secondItem="I7D-tF-WNh" secondAttribute="trailing" id="wIX-TQ-Obx"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="IEM-kr-Rin"/>
+            <connections>
+                <outlet property="imageView" destination="wZj-5h-5Gk" id="nkg-3U-hN8"/>
+                <outlet property="mainView" destination="I7D-tF-WNh" id="Z9r-PH-fls"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="79"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="img_thumb" width="240" height="160"/>
+    </resources>
+</document>

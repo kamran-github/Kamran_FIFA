@@ -1,0 +1,6 @@
+framework module Pods_FootballFanPush {
+  umbrella header "Pods-FootballFanPush-umbrella.h"
+
+  export *
+  module * { export * }
+}
