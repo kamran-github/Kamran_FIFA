@@ -143,7 +143,7 @@ class FixtureStateViewController: UIViewController {
                                let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
                          TeamDetailViewController
            myTeamsController.Teamname = dic.value(forKey: "hometeamname") as? String ?? ""
-                                myTeamsController.season_id = season_id
+        myTeamsController.season_id = season_id as! Int
                                 //myTeamsController.legname = dic.value(forKey: "legname") as! String
                   myTeamsController.team_id = homeId as AnyObject
                                 show(myTeamsController, sender: self)
@@ -153,7 +153,7 @@ class FixtureStateViewController: UIViewController {
                         let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
                   TeamDetailViewController
            myTeamsController.Teamname = dic.value(forKey: "visitorteamname") as? String ?? ""
-                         myTeamsController.season_id = season_id
+        myTeamsController.season_id = season_id as! Int
                          //myTeamsController.legname = dic.value(forKey: "legname") as! String
            myTeamsController.team_id = visitorId as AnyObject
                          show(myTeamsController, sender: self)

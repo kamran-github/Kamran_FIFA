@@ -24,8 +24,8 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     @IBOutlet weak var popupView: UIView?
         @IBOutlet weak var poptable: UITableView?
        @IBOutlet weak var storytableview: UITableView?
-    var season_id: AnyObject  = 0 as AnyObject
-    var team_id: AnyObject  = 0 as AnyObject
+    var season_id  = 0
+    var team_id  = 0
      @IBOutlet weak var childView: UIView?
     var Arrlige: [AnyObject] = []
      var Arrstanding: [AnyObject] = []
@@ -248,7 +248,7 @@ teamapiCall()
                     let  homelogo = dic.value(forKey: "logo_path") as! String
                           
                        let url = URL(string:homelogo)!
-                    season_id = dic.value(forKey: "season_id") as AnyObject
+                    season_id = dic.value(forKey: "season_id") as! Int
                     Dropdownimg?.af.setImage(withURL: url)
                     teamapiCall()
                     

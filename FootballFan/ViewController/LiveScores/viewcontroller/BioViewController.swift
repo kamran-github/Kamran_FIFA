@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 class BioViewController: UIViewController {
-    var season_id: AnyObject = 0 as AnyObject
+    var season_id = 0
     var dic: NSDictionary = NSDictionary()
     var apd = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var playstate: UILabel?

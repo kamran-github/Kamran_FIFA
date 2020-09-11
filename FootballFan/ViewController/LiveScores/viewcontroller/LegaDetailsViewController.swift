@@ -10,56 +10,40 @@ import Foundation
 import UIKit
 
 class LegaDetailsViewController: UIViewController {
+   
+    @IBOutlet weak var parentview: UIView?
+    var apd = UIApplication.shared.delegate as! AppDelegate
     fileprivate weak var categoryView: AHCategoryView!
     var childVCs = [UIViewController]()
-      @IBOutlet weak var parentview: UIView?
-    var apd = UIApplication.shared.delegate as! AppDelegate
     var season_id: AnyObject  = 0 as AnyObject
     var legname:String = ""
     var dic: NSDictionary = NSDictionary()
     var tabatindex: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-//        embeddedIntoTheNavigationBar()
+        //embeddedIntoTheNavigationBar()
         pinterest()
-       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-          self.navigationItem.rightBarButtonItems = nil
-           self.navigationItem.leftBarButtonItems = nil
-           self.title = legname
+        super.viewWillAppear(animated)
+        self.navigationItem.rightBarButtonItems = nil
+        self.navigationItem.leftBarButtonItems = nil
+        self.title = legname
         let button2 = UIBarButtonItem(image: UIImage(named: "shear_dark"), style: .plain, target: self, action: #selector(self.Showcalender(sender:)))
-                                    let rightSearchBarButtonItem1:UIBarButtonItem = button2
-                        
-                                  /*  let rightSearchBarButtonItem2:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(self.Getsliderdata))*/
-                                    
-                                    
-                                    self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem1], animated: true)
-      }
-      @objc func Showcalender(sender:UIButton) {
+        let rightSearchBarButtonItem1:UIBarButtonItem = button2
+        
+        self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem1], animated: true)
     }
-
+    @objc func Showcalender(sender:UIButton) {
+    }
+    
 }
 
 
 //MARK:- Pinterest NavBar Style
 extension LegaDetailsViewController {
     func pinterest() {
-        ///######## 1. Adding items
-        /*var featureItem = AHCategoryItem()
-        featureItem.title = "Feature"
-        var chartItem = AHCategoryItem()
-        chartItem.title = "Categories"
-        var radioItem = AHCategoryItem()
-        radioItem.title = "Radio"
-        var liveItem = AHCategoryItem()
-        liveItem.title = "Live"
-        var searchItem = AHCategoryItem()
-        searchItem.normalImage = UIImage(named: "search-magnifier")
-        searchItem.selectedImage = UIImage(named: "search-magnifier")
-        
-        let items = [featureItem, chartItem, radioItem, liveItem, featureItem, chartItem, radioItem, liveItem, searchItem]*/
         var featureItem = AHCategoryItem()
         featureItem.title = "Matchday"
         var chartItem = AHCategoryItem()
@@ -77,41 +61,17 @@ extension LegaDetailsViewController {
         mybanter.season_id = season_id
         childVCs.append(mybanter)
         
-               let LDsate : LDsateViewController = storyBoard.instantiateViewController(withIdentifier: "LDsate") as! LDsateViewController
-               LDsate.season_id = season_id
+        let LDsate : LDsateViewController = storyBoard.instantiateViewController(withIdentifier: "LDsate") as! LDsateViewController
+        LDsate.season_id = season_id
         LDsate.dic = dic
-               childVCs.append(LDsate)
+        childVCs.append(LDsate)
         let myteams:LDTeamsViewController = storyBoard.instantiateViewController(withIdentifier: "LDTeams") as! LDTeamsViewController
         myteams.season_id = season_id
-
-        childVCs.append(myteams)
-       
         
-      /* for _ in 0..<8 {
-            let vc = UIViewController()
-            vc.view.backgroundColor = UIColor.random()
-            childVCs.append(vc)
-        }
-        //let bantervc:BantersViewController = Bundle.main.loadNibNamed("Banters", owner: self, options: nil)?.first as! BantersViewController
-        let bantervc = BantersViewController()
-        childVCs.append(bantervc)
-        //let chats = ChatsViewController()
-        //childVCs.append(chats)
-        let targetViewController = BantersViewController()
-        //targetViewController.title = "Target"
-        //targetViewController.view.backgroundColor = .white
-        let targetNavigationController: UINavigationController = UINavigationController(rootViewController: targetViewController)
-        childVCs.append(targetNavigationController)
-        let umbrellaViewController = ChatsViewController()
-        //umbrellaViewController.title = "Umbrella"
-        //umbrellaViewController.view.backgroundColor = .white
-        let umbrellaNavigationController: UINavigationController = UINavigationController(rootViewController: umbrellaViewController)
-        childVCs.append(umbrellaNavigationController)*/
+        childVCs.append(myteams)
         
         ///######## 3. Configuring barStyle
         var style = AHCategoryNavBarStyle()
-//        style.contentInset.left = 100.0
-//        style.contentInset.right = 100.0
         style.height = 37.0
         style.fontSize = 18.0
         style.selectedFontSize = 20.0
@@ -125,11 +85,11 @@ extension LegaDetailsViewController {
         style.normalColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
         style.selectedColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).withAlphaComponent(0.7)
         //style.showBgMaskView = true
-       // style.bgMaskViewColor = UIColor.lightGray
+        // style.bgMaskViewColor = UIColor.lightGray
         
         let parentheight = view.frame.size.height
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
-        (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
         
         let atualheight = parentheight -  topBarHeight
         //######### 4. Attaching categoryView to view.addSubview
@@ -138,11 +98,11 @@ extension LegaDetailsViewController {
         categoryView.interControllerSpacing = 10.0
         parentview?.addSubview(categoryView)
         self.categoryView = categoryView
-       // parentview = categoryView
+        // parentview = categoryView
         //refreshBadgeCount()
         categoryView.select(at: tabatindex)
     }
- 
+    
 }
 
 //MARK: - Embeded the navBar into a UINavigationBar
@@ -186,7 +146,7 @@ extension LegaDetailsViewController {
         ///######## 3. Configuring barStyle
         
         var style = AHCategoryNavBarStyle()
-//        style.contentInset = .zero
+        //        style.contentInset = .zero
         style.interItemSpace = 8.0
         style.itemPadding = 8.0
         style.isScrollable = false
@@ -197,7 +157,7 @@ extension LegaDetailsViewController {
         style.indicatorColor = UIColor(red: 244.0/255.0, green: 173.0/255.0, blue: 98.0/255.0, alpha: 1.0)
         style.normalColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
         style.selectedColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1.0)
-         let parentheight = (parentview?.frame.size.height)!
+        let parentheight = (parentview?.frame.size.height)!
         //######### 4. Attaching categoryView to navigationItem.titleView
         let frame = CGRect(x: 0, y: 64.0, width: (parentview?.frame.size.width)!, height: parentheight)
         let categoryView = AHCategoryView(frame: frame, categories: items, childVCs: childVCs, parentVC: self, barStyle: style)

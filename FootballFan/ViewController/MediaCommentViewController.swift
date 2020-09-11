@@ -208,7 +208,11 @@ class MediaCommentViewController: UIViewController,UITableViewDelegate,UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshFanUpdateComments), name: notificationName3, object: nil)
        
         
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .large, color: .gray,  placeInTheCenterOf: self.view)
+        if #available(iOS 13.0, *) {
+            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .large, color: .gray,  placeInTheCenterOf: self.view)
+        } else {
+            // Fallback on earlier versions
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         

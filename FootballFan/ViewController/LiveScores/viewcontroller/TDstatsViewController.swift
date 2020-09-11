@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 class TDstatsViewController: UIViewController {
-   var season_id: AnyObject = 0 as AnyObject
+   var season_id = 0
        
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
@@ -65,7 +65,7 @@ class TDstatsViewController: UIViewController {
 
     var arrstanding: [AnyObject] = []
   var dicall: NSDictionary = NSDictionary()
-     var team_id: AnyObject  = 0 as AnyObject
+     var team_id = 0  
     override func viewDidLoad() {
         super.viewDidLoad()
      teamapiCall()

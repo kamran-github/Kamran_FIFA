@@ -334,7 +334,7 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
             FixturescoreViewController
             
             
-                   myTeamsController.season_id = dict1.value(forKey: "season_id") as AnyObject
+            myTeamsController.season_id = dict1.value(forKey: "season_id") as AnyObject as! Int
                    //myTeamsController.legname = dic.value(forKey: "legname") as! String
             myTeamsController.dict = dict1 as NSDictionary
                    show(myTeamsController, sender: self)

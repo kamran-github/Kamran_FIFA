@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-   var season_id: AnyObject = 0 as AnyObject
+   var season_id = 0  
        
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0

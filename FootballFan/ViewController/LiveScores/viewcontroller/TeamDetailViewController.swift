@@ -14,7 +14,7 @@ class TeamDetailViewController: UIViewController {
     var childVCs = [UIViewController]()
       @IBOutlet weak var parentview: UIView?
     var apd = UIApplication.shared.delegate as! AppDelegate
-    var season_id: AnyObject  = 0 as AnyObject
+    var season_id = 0
      var team_id: AnyObject  = 0 as AnyObject
     var Teamname:String = ""
    // var dic: NSDictionary = NSDictionary()
@@ -76,12 +76,12 @@ extension TeamDetailViewController {
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let mybanter : TDOverviewViewController = storyBoard.instantiateViewController(withIdentifier: "teamoverview") as! TDOverviewViewController
         mybanter.season_id = season_id
-        mybanter.team_id = team_id
+        mybanter.team_id = team_id as! Int
       
         childVCs.append(mybanter)
          let TDstats : TDstatsViewController = storyBoard.instantiateViewController(withIdentifier: "TDstats") as! TDstatsViewController
           TDstats.season_id = season_id
-         TDstats.team_id = team_id
+        TDstats.team_id = team_id as! Int
         
          childVCs.append(TDstats)
 

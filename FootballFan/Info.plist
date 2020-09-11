@@ -53,10 +53,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow access for Football Fan to your media library to use your images for your profile picture or share images and videos with other Fans.</string>
 	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>

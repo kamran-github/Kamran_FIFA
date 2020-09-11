@@ -32,7 +32,7 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
     var arrevent: [AnyObject] = []
     var homeId:Int = 0
     var visitorId:Int = 0
-    var season_id: AnyObject  = 0 as AnyObject
+    var season_id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

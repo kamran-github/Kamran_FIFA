@@ -13,8 +13,6 @@
 		<string>applinks:link.ifootballfan.com</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
-	<array>
-		<string>group.com.tridecimal.ltd.footballfan</string>
-	</array>
+	<array/>
 </dict>
 </plist>

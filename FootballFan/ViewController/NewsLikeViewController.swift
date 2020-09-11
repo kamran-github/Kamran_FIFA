@@ -43,8 +43,12 @@ class NewsLikeViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // Register to receive notification
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshFanUpdateGetLikes), name: notificationName1, object: nil)
         
-        
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .large, color: .gray,  placeInTheCenterOf: self.view)
+        //Vipin ios 13
+        if #available(iOS 13.0, *) {
+            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .large, color: .gray,  placeInTheCenterOf: self.view)
+        } else {
+            // Fallback on earlier versions
+        }
         
         
     }
