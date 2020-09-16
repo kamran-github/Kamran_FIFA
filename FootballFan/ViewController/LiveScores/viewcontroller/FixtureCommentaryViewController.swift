@@ -8,7 +8,9 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 class FixtureCommentaryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    var fixtureComentryData : Fixture?
    var season_id: AnyObject = 0 as AnyObject
         var dic: NSDictionary = NSDictionary()
     var apd = UIApplication.shared.delegate as! AppDelegate

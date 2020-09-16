@@ -166,7 +166,7 @@ struct Fixture : Mappable {
     var commentaries : Bool?
     var weather_report : String?
     var venue : String?
-    var referee : String?
+    var referee : ReferenceFixture?
     var events : Events?
     var stats : Stats?
     var time : Time?
@@ -479,7 +479,7 @@ struct Starting_at : Mappable {
 
 
 struct Stats : Mappable {
-    var data : [String]?
+   var data : [StatsData]?
 
     init?(map: Map) {
 
@@ -488,6 +488,118 @@ struct Stats : Mappable {
     mutating func mapping(map: Map) {
 
         data <- map["data"]
+    }
+
+}
+
+struct StatsData : Mappable {
+    var fixture_id : Int?
+    var fouls : Int?
+    var penalties : String?
+    var injuries : Int?
+    var team_id : Int?
+    var ball_safe : Int?
+    var goal_kick : String?
+    var corners : Int?
+    var redcards : Int?
+    var goal_attempts : Int?
+    var throw_in : String?
+    var possessiontime : Int?
+    var passes : Passes?
+    var saves : Int?
+    var substitutions : Int?
+    var attacks : Attacks?
+    var yellowcards : Int?
+    var shots : Shots?
+    var yellowredcards : String?
+    var offsides : Int?
+    var free_kick : String?
+    var goals : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        fixture_id <- map["fixture_id"]
+        fouls <- map["fouls"]
+        penalties <- map["penalties"]
+        injuries <- map["injuries"]
+        team_id <- map["team_id"]
+        ball_safe <- map["ball_safe"]
+        goal_kick <- map["goal_kick"]
+        corners <- map["corners"]
+        redcards <- map["redcards"]
+        goal_attempts <- map["goal_attempts"]
+        throw_in <- map["throw_in"]
+        possessiontime <- map["possessiontime"]
+        passes <- map["passes"]
+        saves <- map["saves"]
+        substitutions <- map["substitutions"]
+        attacks <- map["attacks"]
+        yellowcards <- map["yellowcards"]
+        shots <- map["shots"]
+        yellowredcards <- map["yellowredcards"]
+        offsides <- map["offsides"]
+        free_kick <- map["free_kick"]
+        goals <- map["goals"]
+    }
+
+}
+
+struct Passes : Mappable {
+    var total : Int?
+    var accurate : Int?
+    var percentage : Int?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        total <- map["total"]
+        accurate <- map["accurate"]
+        percentage <- map["percentage"]
+    }
+
+}
+struct Shots : Mappable {
+    var total : Int?
+    var insidebox : Int?
+    var blocked : String?
+    var outsidebox : Int?
+    var ongoal : Int?
+    var offgoal : Int?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        total <- map["total"]
+        insidebox <- map["insidebox"]
+        blocked <- map["blocked"]
+        outsidebox <- map["outsidebox"]
+        ongoal <- map["ongoal"]
+        offgoal <- map["offgoal"]
+    }
+
+}
+struct Attacks : Mappable {
+    var dangerous_attacks : Int?
+    var attacks : Int?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        dangerous_attacks <- map["dangerous_attacks"]
+        attacks <- map["attacks"]
     }
 
 }
@@ -538,6 +650,96 @@ struct Total : Mappable {
 
 
 struct VisitorStandings : Mappable {
+    var id : Int?
+    var position : Int?
+    var team_id : Int?
+    var team_name : String?
+    var round_id : Int?
+    var round_name : Int?
+    var group_id : Int?
+    var group_name : String?
+    var overall : Overall?
+    var home : Home?
+    var away : Away?
+    var total : Total?
+    var result : String?
+    var points : Int?
+    var recent_form : String?
+    var status : String?
+    var season_id : Int?
+    var logo_path : String?
+    var positionChange : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        position <- map["position"]
+        team_id <- map["team_id"]
+        team_name <- map["team_name"]
+        round_id <- map["round_id"]
+        round_name <- map["round_name"]
+        group_id <- map["group_id"]
+        group_name <- map["group_name"]
+        overall <- map["overall"]
+        home <- map["home"]
+        away <- map["away"]
+        total <- map["total"]
+        result <- map["result"]
+        points <- map["points"]
+        recent_form <- map["recent_form"]
+        status <- map["status"]
+        season_id <- map["season_id"]
+        logo_path <- map["logo_path"]
+        positionChange <- map["positionChange"]
+    }
+
+}
+
+
+
+struct ReferenceFixture : Mappable {
+    var data : ReferenceFixtureData?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        data <- map["data"]
+    }
+
+}
+
+struct ReferenceFixtureData : Mappable {
+    var firstname : String?
+    var id : Int?
+    var fullname : String?
+    var common_name : String?
+    var lastname : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        firstname <- map["firstname"]
+        id <- map["id"]
+        fullname <- map["fullname"]
+        common_name <- map["common_name"]
+        lastname <- map["lastname"]
+    }
+
+}
+
+
+
+struct ReferenceData : Mappable {
     var id : Int?
     var position : Int?
     var team_id : Int?

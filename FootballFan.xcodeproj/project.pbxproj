@@ -508,6 +508,8 @@
 		18FFA3CA233F3617006CEC23 /* Slidertrivia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FFA3C9233F3617006CEC23 /* Slidertrivia.swift */; };
 		2FD88AE62509080B002547B4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD88AE52509080B002547B4 /* Constants.swift */; };
 		2FD88AE92509131C002547B4 /* LiveScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD88AE82509131C002547B4 /* LiveScoreModel.swift */; };
+		2FFF27D12511A6A100286E8B /* LeagueStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF27D02511A6A100286E8B /* LeagueStats.swift */; };
+		2FFF27D5251201EC00286E8B /* RoundSeasonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF27D4251201EC00286E8B /* RoundSeasonModel.swift */; };
 		5253CD890DD4AA6D23520026 /* Pods_FootballFanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35653E9CE4FC09D254D43DD /* Pods_FootballFanTests.framework */; };
 		5E282FDA843F8B6BC7F99FA9 /* Pods_FootballFan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6498E5A1EEEF0F220E3F74 /* Pods_FootballFan.framework */; };
 		6F260EBD19EAC82EC580AD76 /* Pods_FootballFanPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B556603A43EA7326C61854B /* Pods_FootballFanPush.framework */; };
@@ -1066,6 +1068,8 @@
 		1E106CBF2126AB3DB5592428 /* Pods_FootballFan_FootballFanUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballFan_FootballFanUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD88AE52509080B002547B4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2FD88AE82509131C002547B4 /* LiveScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveScoreModel.swift; sourceTree = "<group>"; };
+		2FFF27D02511A6A100286E8B /* LeagueStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeagueStats.swift; sourceTree = "<group>"; };
+		2FFF27D4251201EC00286E8B /* RoundSeasonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundSeasonModel.swift; sourceTree = "<group>"; };
 		3E270A74EE97ADAC7A05E69D /* Pods-FootballFanPush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballFanPush.release.xcconfig"; path = "Target Support Files/Pods-FootballFanPush/Pods-FootballFanPush.release.xcconfig"; sourceTree = "<group>"; };
 		41E3F14E9A2B209EC68932A4 /* Pods-FootballFanTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballFanTests.release.xcconfig"; path = "Target Support Files/Pods-FootballFanTests/Pods-FootballFanTests.release.xcconfig"; sourceTree = "<group>"; };
 		60DA528C6BAC87D53DA755B8 /* Pods-FootballFanTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballFanTests.debug.xcconfig"; path = "Target Support Files/Pods-FootballFanTests/Pods-FootballFanTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1788,6 +1792,8 @@
 		2FD88AE7250912A2002547B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2FFF27D4251201EC00286E8B /* RoundSeasonModel.swift */,
+				2FFF27D02511A6A100286E8B /* LeagueStats.swift */,
 				2FD88AE82509131C002547B4 /* LiveScoreModel.swift */,
 			);
 			path = Models;
@@ -2492,6 +2498,7 @@
 				18AD8B942306D02B00BDD256 /* PageView.swift in Sources */,
 				18AD8B552306BEE500BDD256 /* UIWindow+Extension.swift in Sources */,
 				18AD8AD62306BA1900BDD256 /* NotifyPermissionController.swift in Sources */,
+				2FFF27D5251201EC00286E8B /* RoundSeasonModel.swift in Sources */,
 				18AD8AE42306BA1900BDD256 /* AddMultipleTeamViewController.swift in Sources */,
 				1887CCF5235F296D00BF62D0 /* splashController.swift in Sources */,
 				1833CE6B243B802800F8500F /* MediaCommentViewController.swift in Sources */,
@@ -2508,6 +2515,7 @@
 				18AD8AED2306BA1900BDD256 /* MediaPreviewController.swift in Sources */,
 				18AD8B152306BD2E00BDD256 /* FanUpdatesCell.swift in Sources */,
 				18AD8B4D2306BE3100BDD256 /* Messages.swift in Sources */,
+				2FFF27D12511A6A100286E8B /* LeagueStats.swift in Sources */,
 				18810E012306EB6000E8352B /* StandingCell.swift in Sources */,
 				18AD8B9D2306D02B00BDD256 /* ShowFreedomview.swift in Sources */,
 				18AD8AC52306BA1800BDD256 /* AddTeamViewController.swift in Sources */,

@@ -33,66 +33,61 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
     var homeId:Int = 0
     var visitorId:Int = 0
     var season_id = 0
+    var fixtureOverViewData : Fixture?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let localTeam = dic.value(forKey: "localTeam") {
-            if let localTeamDetil = (localTeam as AnyObject).value(forKey: "data") {
-                if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
-                    let  homename = name as! String
-                    let  homelogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
-                    hometeam?.text = homename
+        if let localTeam = fixtureOverViewData?.localTeam {
+            if let localTeamDetil = localTeam.data {
+                if let name = localTeamDetil.name{
+                    let  homelogo = localTeamDetil.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                    hometeam?.text = name
                     let url = URL(string:homelogo)!
-                    homeId = (localTeamDetil as AnyObject).value(forKey: "id") as! Int
+                    homeId = localTeamDetil.id ?? 0
                     imghometeam?.af.setImage(withURL: url)
                 }
             }}
         
-        if let visitorTeam = dic.value(forKey: "visitorTeam") {
-            if let localTeamDetil = (visitorTeam as AnyObject).value(forKey: "data") {
-                if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
-                    let visitorname = name as! String
-                    let visitorlogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
-                    visitteam?.text = visitorname
+        if let visitorTeam = fixtureOverViewData?.visitorTeam {
+            if let visitorTeamDetil = visitorTeam.data {
+                if let name = visitorTeamDetil.name{
+                    let visitorlogo = visitorTeamDetil.logo_path  ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                    visitteam?.text = name
                     let url1 = URL(string:visitorlogo)!
                     imgvisitteam?.af.setImage(withURL: url1 )
-                    visitorId = (localTeamDetil as AnyObject).value(forKey: "id") as! Int
+                    visitorId = visitorTeamDetil.id ?? 0
                 }}}
         
-        lbltime?.text = "\(dic.value(forKey: "homescore") as! Int) : \(dic.value(forKey: "visitorscore") as! Int)"
-        refereename?.text = "VIPIN" //refereedata.value(forKey: "fullname") as? String
+        lbltime?.text = "\(fixtureOverViewData?.scores?.localteam_score ?? 0) : \(fixtureOverViewData?.scores?.visitorteam_score ?? 0)"
+        refereename?.text = fixtureOverViewData?.referee?.data?.fullname ?? ConstantString.notAvailable
         livescoretableview?.delegate = self
         livescoretableview?.dataSource = self
         eventtableview?.delegate = self
         eventtableview?.dataSource = self
         eventtableview?.isScrollEnabled = false
         livescoretableview?.isScrollEnabled = false
-        let events = dic.value(forKey: "events") as! NSDictionary
-        arrevent = events.value(forKey: "data") as! [AnyObject]
         var homescore = 0
         var visitorscore = 0
-        if let scoredic = dic.value(forKey: "scores") {
-            homescore = (scoredic as AnyObject).value(forKey: "localteam_score") as! Int
-            visitorscore = (scoredic as AnyObject).value(forKey: "visitorteam_score") as! Int
+        if let scoredic = fixtureOverViewData?.scores {
+            homescore = scoredic.localteam_score ?? 0
+            visitorscore = scoredic.visitorteam_score ?? 0
             lbltime?.text = "\(homescore) : \(visitorscore)"
         }
-        if let status = dic.value(forKey: "time") {
-            let status = (status as AnyObject).value(forKey: "status") as! String
+        if let status = fixtureOverViewData?.time {
+            let status = status.status ?? ConstantString.notAvailable
             if(status == "FT"){
                 lblstatus?.text = "Final Score"
                 lblstatus?.font = UIFont.systemFont(ofSize: 13.0)
                 lbltime?.text = "\(homescore) : \(visitorscore)"
-                // lbltime?.text = "\(dic.value(forKey: "homescore") as! Int) : \(dic.value(forKey: "visitorscore") as! Int)"
             } else if(status == "LIVE"){
                 lblstatus?.text = "Live"
                 lbltime?.text = "\(homescore) : \(visitorscore)"
-                //lbltime?.text = "\(dic.value(forKey: "homescore") as! Int) : \(dic.value(forKey: "visitorscore") as! Int)"
                 lblstatus?.font = UIFont.systemFont(ofSize: 15.0)
             } else if(status == "NS"){
                 lblstatus?.text = "Time"
                 lblstatus?.font = UIFont.systemFont(ofSize: 15.0)
-                if let mili = dic.value(forKey: "fixtureTime") {
+                if let mili = fixtureOverViewData?.fixtureTime {
                     let mili: Double = Double(truncating: (mili as AnyObject) as! NSNumber)
                     let myMilliseconds: UnixTime = UnixTime(mili/1000.0)
                     let dateFormatter = DateFormatter()
@@ -104,17 +99,15 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
             }
         }
         
-        let dicstats = dic.value(forKey: "stats") as! NSDictionary
-        let data = dicstats.value(forKey: "data") as! NSArray
-        if(data.count>0){
-            let localdic = data[0] as! NSDictionary
-            let visitordic = data[1] as! NSDictionary
-            let localpossessiontime = (localdic.value(forKey: "possessiontime") as! NSNumber).floatValue
-            let visitorpossessiontime = (visitordic.value(forKey: "possessiontime") as! NSNumber).floatValue
-            homeGenralpossession?.text = "\(Int(localpossessiontime))%"
-            visitorGenralpossession?.text = "\(Int(visitorpossessiontime))%"
+        if(fixtureOverViewData?.stats?.data?.count ?? 0>0){
+            let localpossessiontime =  (fixtureOverViewData?.stats?.data![0].possessiontime as NSNumber?)?.floatValue
+            let visitorpossessiontime = (fixtureOverViewData?.stats?.data![1].possessiontime as NSNumber?)?.floatValue
+            homeGenralpossession?.text = "\(Int(localpossessiontime ?? 0))%"
+            visitorGenralpossession?.text = "\(Int(visitorpossessiontime ?? 0))%"
             if(localpossessiontime != 0 &&  visitorpossessiontime != 0 ){
-                Genralpossession?.progress = Float(localpossessiontime/(visitorpossessiontime + localpossessiontime))
+                let sum = (visitorpossessiontime ?? 0) + (localpossessiontime ?? 0)
+                let result = (localpossessiontime ?? 0)/sum
+                Genralpossession?.progress = result
             }else{
                 Genralpossession?.progress = Float(0/100)
             }
@@ -143,7 +136,7 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
     @IBAction func seeldstanding () {
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-        myTeamsController.season_id = dic.value(forKey: "season_id") as AnyObject
+        myTeamsController.season_id = dic.value(forKey: "season_id") as AnyObject as! Int
         // myTeamsController.legname = dic.value(forKey: "legname") as! String
         //myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
         myTeamsController.tabatindex = 2

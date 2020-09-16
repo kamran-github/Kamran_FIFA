@@ -57,7 +57,8 @@
 #define Secret_key @"EHkT97jYe2Zgmu_R7arQ2gBbZoyDsfeWylI-0zS_RX7fnBeJaMDgT7mwKpEg6hiumVPhISMZXWkuW2N-"
 #define PaypalWithaccess_token @"https://api.sandbox.paypal.com/v1/oauth2/token/userinfo?schema=openid"
 
-#define baseurl @"http://apitest.ifootballfan.com:7001"
+//#define baseurl @"http://apitest.ifootballfan.com:7001"
+#define baseurl @"http://ffapidev.ifootballfan.com:7001"
  
 #define Signupmail @"http://api.footballfan.mobi/ffapi/ffapi.php?"
 #define groupAvtar @"http://ifootballfan.com/image/group_avatar.jpg"

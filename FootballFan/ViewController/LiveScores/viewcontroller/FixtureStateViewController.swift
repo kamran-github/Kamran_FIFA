@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 class FixtureStateViewController: UIViewController {
    var season_id: AnyObject = 0 as AnyObject
-       
+    var fixtureStateData : Fixture?
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
    // @IBOutlet weak var storytableview: UITableView?

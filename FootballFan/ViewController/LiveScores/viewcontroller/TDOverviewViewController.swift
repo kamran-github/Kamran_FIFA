@@ -258,7 +258,7 @@ teamapiCall()
     @IBAction func seeldstanding () {
                 let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
                     let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-                     myTeamsController.season_id = dicall.value(forKey: "season_id") as AnyObject
+        myTeamsController.season_id = dicall.value(forKey: "season_id") as AnyObject as! Int
                     // myTeamsController.legname = dic.value(forKey: "legname") as! String
                      //myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
                      myTeamsController.tabatindex = 2
@@ -267,7 +267,7 @@ teamapiCall()
     @IBAction func seematchday () {
                    let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
                        let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-                        myTeamsController.season_id = dicall.value(forKey: "season_id") as AnyObject
+        myTeamsController.season_id = dicall.value(forKey: "season_id") as AnyObject as! Int
                        // myTeamsController.legname = dic.value(forKey: "legname") as! String
                         //myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
                         myTeamsController.tabatindex = 0

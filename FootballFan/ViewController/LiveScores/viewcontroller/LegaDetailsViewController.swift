@@ -8,22 +8,25 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import ObjectMapper
 
 class LegaDetailsViewController: UIViewController {
-   
+    
     @IBOutlet weak var parentview: UIView?
+    
     var apd = UIApplication.shared.delegate as! AppDelegate
-    fileprivate weak var categoryView: AHCategoryView!
     var childVCs = [UIViewController]()
-    var season_id: AnyObject  = 0 as AnyObject
+    var season_id = 0
     var legname:String = ""
     var dic: NSDictionary = NSDictionary()
     var tabatindex: Int = 0
+    fileprivate weak var categoryView: AHCategoryView!
+    var leagueDetail : LeagueStats?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //embeddedIntoTheNavigationBar()
-        pinterest()
-        
+        getLeagueDataFromAPI()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +35,6 @@ class LegaDetailsViewController: UIViewController {
         self.title = legname
         let button2 = UIBarButtonItem(image: UIImage(named: "shear_dark"), style: .plain, target: self, action: #selector(self.Showcalender(sender:)))
         let rightSearchBarButtonItem1:UIBarButtonItem = button2
-        
         self.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem1], animated: true)
     }
     @objc func Showcalender(sender:UIButton) {
@@ -63,7 +65,7 @@ extension LegaDetailsViewController {
         
         let LDsate : LDsateViewController = storyBoard.instantiateViewController(withIdentifier: "LDsate") as! LDsateViewController
         LDsate.season_id = season_id
-        LDsate.dic = dic
+        LDsate.leagueJson = leagueDetail?.leagueStatsJson
         childVCs.append(LDsate)
         let myteams:LDTeamsViewController = storyBoard.instantiateViewController(withIdentifier: "LDTeams") as! LDTeamsViewController
         myteams.season_id = season_id
@@ -173,6 +175,40 @@ extension LegaDetailsViewController {
     }
 }
 
-
-
-
+extension LegaDetailsViewController {
+    //MARK:- Webservices call to get live score data
+    func getLeagueDataFromAPI(){
+        if ClassReachability.isConnectedToNetwork() {
+            let url = baseurl+"/Season/"+String(season_id)
+            AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    if let json = value as? [String: Any] {
+                        let status1: Bool = json["success"] as! Bool
+                        if(status1){
+                            self.leagueDetail = Mapper<LeagueStats>().map(JSONObject: json)
+                            self.pinterest()
+                        }else{
+                            self.alertWithTitle(title: nil, message: ConstantString.apiFailMsg, ViewController: self)
+                        }
+                    }
+                case .failure(let error):
+                    self.alertWithTitle(title: nil, message: ConstantString.apiFailMsg, ViewController: self)
+                    print(error)
+                    break
+                }
+            }
+        } else {
+            alertWithTitle(title: nil, message: "Please check your Internet connection.", ViewController: self)
+            
+        }
+    }
+    
+    func alertWithTitle(title: String!, message: String, ViewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {_ in
+        });
+        alert.addAction(action1)
+        self.present(alert, animated: true, completion:nil)
+    }
+}

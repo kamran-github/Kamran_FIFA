@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireImage
 class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
    var season_id = 0  
-       
+    var fixtureLineupData : Fixture?
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
     

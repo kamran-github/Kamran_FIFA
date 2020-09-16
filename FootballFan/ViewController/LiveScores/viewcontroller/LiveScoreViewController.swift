@@ -167,23 +167,18 @@ class LiveScoreViewController: UIViewController, UICollectionViewDelegate, UICol
         let section = headerView!.tag
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-        myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id as AnyObject
+        myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id ?? 0
         myTeamsController.legname = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name ?? ConstantString.notAvailable
-        //Comment By Vipin
-        // myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
         show(myTeamsController, sender: self)
     }
     
     @objc func standingTouched(_ sender: UITapGestureRecognizer) {
         let headerView = sender.view
-        let section    = headerView!.tag
-        let dic = arrscore[section] as! NSDictionary
+        let section = headerView!.tag
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-        myTeamsController.season_id = dic.value(forKey: "season_id") as AnyObject
-        myTeamsController.legname = dic.value(forKey: "legname") as! String
-        //Comment By Vipin
-        myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
+        myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id ?? 0
+        myTeamsController.legname = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name ?? ConstantString.notAvailable
         myTeamsController.tabatindex = 2
         show(myTeamsController, sender: self)
     }
@@ -462,7 +457,7 @@ extension LiveScoreViewController {
         let myTeamsController : FixturescoreViewController = storyBoard.instantiateViewController(withIdentifier: "fixture") as!
         FixturescoreViewController
         myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[indexPath.section].season_id ?? 0
-        myTeamsController.fixtureArray = sortedliveScoreArray[selectedJsonIndex].valueObject[indexPath.section].fixture
+        myTeamsController.fixtureData = sortedliveScoreArray[selectedJsonIndex].valueObject[indexPath.section].fixture?[indexPath.row]
         show(myTeamsController, sender: self)
     }
     
