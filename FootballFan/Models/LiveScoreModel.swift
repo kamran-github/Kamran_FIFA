@@ -131,7 +131,7 @@ struct TeamData : Mappable {
 
 }
 struct Events : Mappable {
-    var data : [String]?
+    var data : [EventData]?
 
     init?(map: Map) {
 
@@ -143,6 +143,94 @@ struct Events : Mappable {
     }
 
 }
+
+struct EventData : Mappable {
+    var fixture_id : Int?
+    var reason : String?
+    var related_player_name : String?
+    var related_player_id : Int?
+    var team_id : String?
+    var extra_minute : String?
+    var type : String?
+    var minute : Int?
+    var result : String?
+    var player_id : Int?
+    var injuried : String?
+    var id : Int?
+    var player_name : String?
+    var var_result : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        fixture_id <- map["fixture_id"]
+        reason <- map["reason"]
+        related_player_name <- map["related_player_name"]
+        related_player_id <- map["related_player_id"]
+        team_id <- map["team_id"]
+        extra_minute <- map["extra_minute"]
+        type <- map["type"]
+        minute <- map["minute"]
+        result <- map["result"]
+        player_id <- map["player_id"]
+        injuried <- map["injuried"]
+        id <- map["id"]
+        player_name <- map["player_name"]
+        var_result <- map["var_result"]
+    }
+
+}
+struct Localteam : Mappable {
+    var kit_colors : String?
+    var color : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        kit_colors <- map["kit_colors"]
+        color <- map["color"]
+    }
+
+}
+
+struct TeamColor : Mappable {
+    var localteam : Localteam?
+    var visitorteam : Visitorteam?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        localteam <- map["localteam"]
+        visitorteam <- map["visitorteam"]
+    }
+
+}
+
+struct Visitorteam : Mappable {
+    var kit_colors : String?
+    var color : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        kit_colors <- map["kit_colors"]
+        color <- map["color"]
+    }
+
+}
+
 
 struct Fixture : Mappable {
     var id : Int?
@@ -170,7 +258,7 @@ struct Fixture : Mappable {
     var events : Events?
     var stats : Stats?
     var time : Time?
-    var colors : String?
+    var colors : TeamColor?
     var status : String?
     var coaches : String?
     var assistants : String?

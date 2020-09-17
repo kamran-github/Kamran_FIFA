@@ -125,20 +125,24 @@ extension FixturescoreViewController {
         mybanter.fixtureOverViewData = fixtureData
         childVCs.append(mybanter)
         let Commentary : FixtureCommentaryViewController = storyBoard.instantiateViewController(withIdentifier: "Commentary") as! FixtureCommentaryViewController
-        Commentary.Fixture_id = dict.value(forKey: "fixture_id") as AnyObject
+        if let fixtureid = fixtureData?.id! {
+           Commentary.Fixture_id = fixtureid
+        } else {
+            Commentary.Fixture_id = 0
+        }
         Commentary.dic = dict
         Commentary.fixtureComentryData = fixtureData
-     //   childVCs.append(Commentary)
+        childVCs.append(Commentary)
         let FixtureLineUp : FixtureLineUpViewController = storyBoard.instantiateViewController(withIdentifier: "FixtureLineUp") as! FixtureLineUpViewController
         FixtureLineUp.Fixture_id = dict.value(forKey: "fixture_id") as AnyObject
         FixtureLineUp.dic = dict
         FixtureLineUp.fixtureLineupData = fixtureData
-      //  childVCs.append(FixtureLineUp)
+        childVCs.append(FixtureLineUp)
         let FixtureState : FixtureStateViewController = storyBoard.instantiateViewController(withIdentifier: "FixtureState") as! FixtureStateViewController
         // FixtureLineUp.Fixture_id = dic.value(forKey: "fixture_id") as AnyObject
         FixtureState.dic = dict
         FixtureState.fixtureStateData = fixtureData
-       // childVCs.append(FixtureState)
+        childVCs.append(FixtureState)
         ///######## 3. Configuring barStyle
         var style = AHCategoryNavBarStyle()
         //        style.contentInset.left = 100.0

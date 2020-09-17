@@ -136,7 +136,7 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
     @IBAction func seeldstanding () {
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
-        myTeamsController.season_id = dic.value(forKey: "season_id") as AnyObject as! Int
+        myTeamsController.season_id = fixtureOverViewData?.season_id ?? 0
         // myTeamsController.legname = dic.value(forKey: "legname") as! String
         //myTeamsController.dic = dic.value(forKey: "seasonStat") as! NSDictionary
         myTeamsController.tabatindex = 2
@@ -166,167 +166,153 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
         myTeamsController.team_id = visitorId as AnyObject
         show(myTeamsController, sender: self)
     }
- 
+    
 }
 
 
 extension FixtureOverviewViewController {
     func numberOfSections(in tableView: UITableView) -> Int {
-         return 1
-     }
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-         return 30.0
-     }
-     
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-         
-         //let dic = appDelegate().arrStanding[section] as! NSDictionary
-         //let date = dic.value(forKey: "date")
-         if( tableView == livescoretableview){
-             return "date" as? String
-         }else{
-             return "Match Events"
-         }
-     }
-     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-         if( tableView == livescoretableview){
-             let headerView:StandingHeader = livescoretableview!.dequeueReusableCell(withIdentifier: "StandingHeader") as! StandingHeader
-             headerView.headername?.text = "Live Score"
-             headerView.headerlabelHightConstraint2.constant = 0.0
-             
-             return headerView
-         }
-         else{
-             let headerView:EventHeader = eventtableview!.dequeueReusableCell(withIdentifier: "EventHeader") as! EventHeader
-             headerView.headername?.text = "Match Events"
-             // headerView.headerlabelHightConstraint2.constant = 0.0
-             
-             return headerView
-         }
-         
-     }
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         // let arrrow = resultArry[section] as! NSArray
-         if( tableView == livescoretableview){
-             
-             return 2
-         }else{
-             return arrevent.count
-         }
-         
-         
-     }
-     /*  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-      return 30.0
-      }*/
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         if( tableView == livescoretableview){
-             let cell:StandingCell = livescoretableview!.dequeueReusableCell(withIdentifier: "StandingCell") as! StandingCell
-             if(indexPath.row == 0){
-                 let localStandings = dic.value(forKey: "localStandings") as! NSDictionary
-                 cell.teamName?.text = localStandings.value(forKey: "team_name") as? String
-                 let  homelogo = localStandings.value(forKey: "logo_path") as! String
-                 
-                 let url = URL(string:homelogo)!
-                 
-                 cell.imgtagright?.af.setImage(withURL: url)
-                 cell.Sno?.text = "\(localStandings.value(forKey: "position") as! Int)"
-                 let total = localStandings.value(forKey: "total") as! NSDictionary
-                 cell.GD?.text = "\(total.value(forKey: "goal_difference") as AnyObject)"
-                 cell.Pts?.text = "\(total.value(forKey: "points") as! Int)"
-                 let overall = localStandings.value(forKey: "overall") as! NSDictionary
-                 cell.D?.text = "\(overall.value(forKey: "draw") as! Int)"
-                 cell.pl?.text = "\(overall.value(forKey: "games_played") as! Int)"
-                 cell.L?.text = "\(overall.value(forKey: "lost") as! Int)"
-                 cell.W?.text = "\(overall.value(forKey: "won") as! Int)"
-                 
-             }
-             else if(indexPath.row == 1){
-                 let visitorStandings = dic.value(forKey: "visitorStandings") as! NSDictionary
-                 cell.teamName?.text = visitorStandings.value(forKey: "team_name") as? String
-                 let  homelogo = visitorStandings.value(forKey: "logo_path") as! String
-                 
-                 let url = URL(string:homelogo)!
-                 
-                 cell.imgtagright?.af.setImage(withURL: url)
-                 cell.Sno?.text = "\(visitorStandings.value(forKey: "position") as! Int)"
-                 let total = visitorStandings.value(forKey: "total") as! NSDictionary
-                 //Int64(jidsDict.value(forKey: "lastactivitytime") as! String)
-                 cell.GD?.text = "\(total.value(forKey: "goal_difference") as AnyObject)"
-                 cell.Pts?.text = "\(total.value(forKey: "points") as! Int)"
-                 let overall = visitorStandings.value(forKey: "overall") as! NSDictionary
-                 cell.D?.text = "\(overall.value(forKey: "draw") as! Int)"
-                 cell.pl?.text = "\(overall.value(forKey: "games_played") as! Int)"
-                 cell.L?.text = "\(overall.value(forKey: "lost") as! Int)"
-                 cell.W?.text = "\(overall.value(forKey: "won") as! Int)"
-             }
-             
-             return cell
-         }else{
-             let cell:EventCell = eventtableview!.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
-             let dic = arrevent [indexPath.row] as! NSDictionary
-             
-             let id = Int(dic.value(forKey: "team_id") as! String)
-             if(homeId == id as! Int){
-                 cell.homeview?.isHidden = false
-                 cell.visitorview?.isHidden = true
-                 cell.headlineleft?.text = dic.value(forKey: "player_name") as? String
-                 if let scores = dic.value(forKey: "related_player_name") {
-                     cell.Discriptionleft?.text = scores as? String ?? ""
-                 }
-                 else{
-                     cell.Discriptionleft?.text = ""
-                 }
-                 cell.minuteleft?.text = "\(dic.value(forKey: "minute") as! Int)'"
-                 let type = dic.value(forKey: "type") as! String
-                 if(type == "yellowcard"){
-                     cell.imgtagleft?.image = UIImage(named: "yellowcard")
-                 }
-                 else if(type == "redcard"){
-                     cell.imgtagleft?.image = UIImage(named: "redcard")
-                 }
-                 else if(type == "substitution"){
-                     cell.imgtagleft?.image = UIImage(named: "substitution_home")
-                     
-                 }
-                 else if(type == "goal"){
-                     cell.imgtagleft?.image = UIImage(named: "goal")
-                 }
-             }else{
-                 cell.homeview?.isHidden = true
-                 cell.visitorview?.isHidden = false
-                 cell.headlineright?.text = dic.value(forKey: "player_name") as? String
-                 if let scores = dic.value(forKey: "related_player_name") {
-                     cell.Discriptionright?.text = scores as? String ?? ""
-                 }
-                 else{
-                     cell.Discriptionright?.text = ""
-                 }
-                 let type = dic.value(forKey: "type") as! String
-                 if(type == "yellowcard"){
-                     cell.imgtagright?.image = UIImage(named: "yellowcard")
-                 }
-                 else if(type == "redcard"){
-                     cell.imgtagright?.image = UIImage(named: "redcard")
-                 }
-                 else if(type == "substitution"){
-                     cell.imgtagright?.image = UIImage(named: "substitution_visitor")
-                     // UIView.animate(withDuration: 0.2, animations: {
-                     //  cell.imgtagright?.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
-                     // })
-                 }
-                 else if(type == "goal"){
-                     cell.imgtagright?.image = UIImage(named: "goal")
-                 }
-                 cell.minuteright?.text = "\(dic.value(forKey: "minute") as! Int)'"
-             }
-             
-             return cell
-         }
-     }
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         // let dic = data[indexPath.row]
-  
-     }
-     
+        return 1
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30.0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        //let dic = appDelegate().arrStanding[section] as! NSDictionary
+        //let date = dic.value(forKey: "date")
+        if( tableView == livescoretableview){
+            return "date" as? String
+        }else{
+            return "Match Events"
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if( tableView == livescoretableview){
+            let headerView:StandingHeader = livescoretableview!.dequeueReusableCell(withIdentifier: "StandingHeader") as! StandingHeader
+            headerView.headername?.text = "Live Score"
+            headerView.headerlabelHightConstraint2.constant = 0.0
+            
+            return headerView
+        }
+        else{
+            let headerView:EventHeader = eventtableview!.dequeueReusableCell(withIdentifier: "EventHeader") as! EventHeader
+            headerView.headername?.text = "Match Events"
+            // headerView.headerlabelHightConstraint2.constant = 0.0
+            
+            return headerView
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // let arrrow = resultArry[section] as! NSArray
+        if( tableView == livescoretableview){
+            
+            return 2
+        }else{
+            return arrevent.count
+        }
+        
+        
+    }
+    /*  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+     return 30.0
+     }*/
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if( tableView == livescoretableview){
+            let cell:StandingCell = livescoretableview!.dequeueReusableCell(withIdentifier: "StandingCell") as! StandingCell
+            if(indexPath.row == 0){
+                
+                cell.teamName?.text = fixtureOverViewData?.localStandings?.team_name ?? ConstantString.notAvailable
+                let  homelogo = fixtureOverViewData?.localStandings?.logo_path  ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                
+                let url = URL(string:homelogo)!
+                
+                cell.imgtagright?.af.setImage(withURL: url)
+                cell.Sno?.text = String(fixtureOverViewData?.localStandings?.position ?? 0)
+                cell.GD?.text = "\(fixtureOverViewData?.localStandings?.total?.goal_difference ?? "0")"
+                cell.Pts?.text = "\(fixtureOverViewData?.localStandings?.total?.points ?? 0)"
+                cell.D?.text = "\(fixtureOverViewData?.localStandings?.overall?.draw ?? 0)"
+                cell.pl?.text = "\(fixtureOverViewData?.localStandings?.overall?.games_played ?? 0)"
+                cell.L?.text = "\((fixtureOverViewData?.localStandings?.overall?.draw ?? 0))"
+                cell.W?.text = "\((fixtureOverViewData?.localStandings?.overall?.won ?? 0))"
+                
+            } else if(indexPath.row == 1) {
+                cell.teamName?.text = fixtureOverViewData?.visitorStandings?.team_name ?? ConstantString.notAvailable
+                let  homelogo = fixtureOverViewData?.visitorStandings?.logo_path  ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                let url = URL(string:homelogo)!
+                cell.imgtagright?.af.setImage(withURL: url)
+                cell.Sno?.text = String(fixtureOverViewData?.visitorStandings?.position ?? 0)
+                cell.GD?.text = "\(fixtureOverViewData?.visitorStandings?.total?.goal_difference ?? "0")"
+                cell.Pts?.text = "\(fixtureOverViewData?.visitorStandings?.total?.points ?? 0)"
+                cell.D?.text = "\(fixtureOverViewData?.visitorStandings?.overall?.draw ?? 0)"
+                cell.pl?.text = "\(fixtureOverViewData?.visitorStandings?.overall?.games_played ?? 0)"
+                cell.L?.text = "\((fixtureOverViewData?.visitorStandings?.overall?.draw ?? 0))"
+                cell.W?.text = "\((fixtureOverViewData?.visitorStandings?.overall?.won ?? 0))"
+            }
+            return cell
+        }else{
+            let cell:EventCell = eventtableview!.dequeueReusableCell(withIdentifier: "EventCell") as! EventCell
+            
+            
+            let id = fixtureOverViewData?.events?.data?[indexPath.row].team_id
+            if(homeId == id as! Int){
+                cell.homeview?.isHidden = false
+                cell.visitorview?.isHidden = true
+                cell.headlineleft?.text = fixtureOverViewData?.events?.data?[indexPath.row].player_name
+                if let scores = fixtureOverViewData?.events?.data?[indexPath.row].related_player_name {
+                    cell.Discriptionleft?.text = scores
+                }
+                else{
+                    cell.Discriptionleft?.text = ""
+                }
+                cell.minuteleft?.text = "\(fixtureOverViewData?.events?.data?[indexPath.row].minute ?? 0)'"
+                let type = fixtureOverViewData?.events?.data?[indexPath.row].type
+                if(type == "yellowcard"){
+                    cell.imgtagleft?.image = UIImage(named: "yellowcard")
+                }
+                else if(type == "redcard"){
+                    cell.imgtagleft?.image = UIImage(named: "redcard")
+                }
+                else if(type == "substitution"){
+                    cell.imgtagleft?.image = UIImage(named: "substitution_home")
+                    
+                }
+                else if(type == "goal"){
+                    cell.imgtagleft?.image = UIImage(named: "goal")
+                }
+            }else{
+                cell.homeview?.isHidden = true
+                cell.visitorview?.isHidden = false
+                cell.headlineright?.text = fixtureOverViewData?.events?.data?[indexPath.row].player_name
+                if let scores = fixtureOverViewData?.events?.data?[indexPath.row].related_player_name  {
+                    cell.Discriptionright?.text = scores
+                }
+                else{
+                    cell.Discriptionright?.text = ""
+                }
+                let type = fixtureOverViewData?.events?.data?[indexPath.row].type
+                if(type == "yellowcard"){
+                    cell.imgtagright?.image = UIImage(named: "yellowcard")
+                }
+                else if(type == "redcard"){
+                    cell.imgtagright?.image = UIImage(named: "redcard")
+                }
+                else if(type == "substitution"){
+                    cell.imgtagright?.image = UIImage(named: "substitution_visitor")
+                }
+                else if(type == "goal"){
+                    cell.imgtagright?.image = UIImage(named: "goal")
+                }
+                cell.minuteright?.text = "\(dic.value(forKey: "minute") as! Int)'"
+            }
+            
+            return cell
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
