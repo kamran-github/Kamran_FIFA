@@ -79,8 +79,8 @@ extension TeamDetailViewController {
         mybanter.team_id = team_id as! Int
       
         childVCs.append(mybanter)
-         let TDstats : TDstatsViewController = storyBoard.instantiateViewController(withIdentifier: "TDstats") as! TDstatsViewController
-          TDstats.season_id = season_id
+        let TDstats : TDstatsViewController = storyBoard.instantiateViewController(withIdentifier: "TDstats") as! TDstatsViewController
+        TDstats.season_id = season_id
         TDstats.team_id = team_id as! Int
         
          childVCs.append(TDstats)

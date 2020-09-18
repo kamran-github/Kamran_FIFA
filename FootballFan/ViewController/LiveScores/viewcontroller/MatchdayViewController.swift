@@ -58,7 +58,8 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
     func smatchdayapiCall(){
         if ClassReachability.isConnectedToNetwork() {
             let milisecond = apd.getUTCFormateDate()
-            let url = "\(baseurl)/Rounds/Season/\(season_id)/\(milisecond)"
+            //Changed Sept
+            let url = "\(baseurl)/Rounds/Season/\(16030)/\(1583193600000)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):

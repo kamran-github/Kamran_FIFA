@@ -190,7 +190,7 @@ class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableV
     @IBOutlet weak var childView :UIView?
     var formation:String = ""
     var dic: NSDictionary = NSDictionary()
-    var Fixture_id: AnyObject  = 0 as AnyObject
+    var Fixture_id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // smatchdayapiCall()
@@ -247,13 +247,6 @@ class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableV
         }
         
         
-        
-        
-        // formation = objformation.value(forKey: "localteam_formation") as! String
-        
-        let eventheader = 40
-        let totelheight = 620 + (homeBench.count * 50) + eventheader
-        childheightConstraint?.constant = CGFloat(totelheight)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -1516,18 +1509,17 @@ class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableV
                 switch response.result {
                 case .success(let value):
                     if let json = value as? [String: Any] {
-                        let status1: Bool = json["success"] as! Bool
+                        let status1: Bool = json["success"] as? Bool ?? false
                         if(status1){
-                            let jsondic = json["json"] as! NSDictionary
-                            self.homeLineup = jsondic.value(forKey: "lineup") as! [AnyObject]
-                            self.homeBench = jsondic.value(forKey: "bench") as! [AnyObject]
+                            let jsondic = json["json"] as? NSDictionary
+                            self.homeLineup = jsondic?.value(forKey: "lineup") as? [AnyObject] ?? []
+                            self.homeBench = jsondic?.value(forKey: "bench") as? [AnyObject] ?? []
                             if(self.selectedsegmentindex == 0){
-                                let objformation = self.dic.value(forKey: "formations") as! NSDictionary
-                                self.formation = objformation.value(forKey: "localteam_formation") as! String
-                                let objcolors = self.dic.value(forKey: "colors") as! NSDictionary
-                                let localteamcolor = objcolors.value(forKey: "localteam") as! NSDictionary
-                                self.FormationReset( color: localteamcolor.value(forKey: "color") as! String)
-                                
+                                let objformation = self.dic.value(forKey: "formations") as? NSDictionary
+                                self.formation = objformation?.value(forKey: "localteam_formation") as? String ?? ""
+                                let objcolors = self.dic.value(forKey: "colors") as? NSDictionary
+                                let localteamcolor = objcolors?.value(forKey: "localteam") as? NSDictionary
+                                self.FormationReset( color: localteamcolor?.value(forKey: "color") as? String ?? "")
                                 let eventheader = 40
                                 let totelheight = 620 + (self.homeBench.count * 50) + eventheader
                                 self.childheightConstraint?.constant = CGFloat(totelheight)
@@ -1570,19 +1562,17 @@ class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableV
                 switch response.result {
                 case .success(let value):
                     if let json = value as? [String: Any] {
-                        let status1: Bool = json["success"] as! Bool
+                        let status1: Bool = json["success"] as? Bool ?? false
                         if(status1){
-                            let jsondic = json["json"] as! NSDictionary
-                            self.visitorLineup = jsondic.value(forKey: "lineup") as! [AnyObject]
-                            self.visitorBench = jsondic.value(forKey: "bench") as! [AnyObject]
+                            let jsondic = json["json"] as? NSDictionary
+                            self.visitorLineup = jsondic?.value(forKey: "lineup") as? [AnyObject] ?? []
+                            self.visitorBench = jsondic?.value(forKey: "bench") as? [AnyObject] ?? []
                             if(self.selectedsegmentindex == 1){
-                                let objformation = self.dic.value(forKey: "formations") as! NSDictionary
-                                self.formation = objformation.value(forKey: "visitorteam_formation") as! String
-                                let objcolors = self.dic.value(forKey: "colors") as! NSDictionary
-                                let localteamcolor = objcolors.value(forKey: "visitorteam") as! NSDictionary
-                                
-                                self.FormationReset(color: localteamcolor.value(forKey: "color") as! String)
-                                
+                                let objformation = self.dic.value(forKey: "formations") as? NSDictionary
+                                self.formation = objformation?.value(forKey: "visitorteam_formation") as? String ?? ""
+                                let objcolors = self.dic.value(forKey: "colors") as? NSDictionary
+                                let localteamcolor = objcolors?.value(forKey: "visitorteam") as? NSDictionary
+                                self.FormationReset(color: localteamcolor?.value(forKey: "color") as? String ?? "")
                                 let eventheader = 40
                                 let totelheight = 620 + (self.visitorBench.count * 50) + eventheader
                                 self.childheightConstraint?.constant = CGFloat(totelheight)

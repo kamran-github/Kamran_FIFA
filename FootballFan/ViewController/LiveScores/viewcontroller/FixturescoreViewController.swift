@@ -134,7 +134,11 @@ extension FixturescoreViewController {
         Commentary.fixtureComentryData = fixtureData
         childVCs.append(Commentary)
         let FixtureLineUp : FixtureLineUpViewController = storyBoard.instantiateViewController(withIdentifier: "FixtureLineUp") as! FixtureLineUpViewController
-        FixtureLineUp.Fixture_id = dict.value(forKey: "fixture_id") as AnyObject
+        if let fixtureid = fixtureData?.id! {
+           FixtureLineUp.Fixture_id = fixtureid
+        } else {
+            FixtureLineUp.Fixture_id = 0
+        }
         FixtureLineUp.dic = dict
         FixtureLineUp.fixtureLineupData = fixtureData
         childVCs.append(FixtureLineUp)

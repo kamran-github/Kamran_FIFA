@@ -97,23 +97,23 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell:StandingCell = storytableview!.dequeueReusableCell(withIdentifier: "StandingCell") as! StandingCell
-        let dic = arrstanding[indexPath.section]
-        let result = dic.value(forKey: "result") as? String ?? ""
-        if let arr = dic.value(forKey: result) as? NSArray {
-            if let dict1 = arr[indexPath.row] as? NSDictionary {
+        let mainDic = arrstanding[indexPath.section]
+        let result = mainDic.value(forKey: "result") as? String ?? ""
+        if let arr = mainDic.value(forKey: result) as? NSArray {
+            if let dict = arr[indexPath.row] as? NSDictionary {
                 if(selectedsegmentindex == 0){
-                    cell.teamName?.text = dic.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
-                    let  homelogo = dic.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                    cell.teamName?.text = dict.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
+                    let  homelogo = dict.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dic.value(forKey: "position") as? Int ?? 0)"
-                    if let total = dict1.value(forKey: "total") as? NSDictionary {
-                        cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
+                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
+                    if let total = dict.value(forKey: "total") as? NSDictionary {
+                        cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? "ConstantString.notAvailable")"
                         cell.Pts?.text = "\(total.value(forKey: "points") as? Int ?? 0)"
                     }
                     
-                    if let overall = dict1.value(forKey: "overall") as? NSDictionary {
+                    if let overall = dict.value(forKey: "overall") as? NSDictionary {
                         cell.D?.text = "\(overall.value(forKey: "draw") as? Int ?? 0)"
                         cell.pl?.text = "\(overall.value(forKey: "games_played") as? Int ?? 0)"
                         cell.L?.text = "\(overall.value(forKey: "lost") as? Int ?? 0)"
@@ -123,19 +123,19 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     
                 }
                 if(selectedsegmentindex == 1){
-                    cell.teamName?.text = dic.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
-                    let  homelogo = dic.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                    cell.teamName?.text = dict.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
+                    let  homelogo = dict.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dic.value(forKey: "position") as? Int ?? 0)"
+                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
                     
-                    if let total = dict1.value(forKey: "total") as? NSDictionary {
+                    if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
                         cell.Pts?.text = "\(total.value(forKey: "points") as? Int ?? 0)"
                     }
                     
-                    if let overall = dict1.value(forKey: "home") as? NSDictionary {
+                    if let overall = dict.value(forKey: "home") as? NSDictionary {
                         cell.D?.text = "\(overall.value(forKey: "draw") as? Int ?? 0)"
                         cell.pl?.text = "\(overall.value(forKey: "games_played") as? Int ?? 0)"
                         cell.L?.text = "\(overall.value(forKey: "lost") as? Int ?? 0)"
@@ -147,19 +147,19 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     }
                 }
                 if(selectedsegmentindex == 2){
-                    cell.teamName?.text = dic.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
-                    let  homelogo = dic.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                    cell.teamName?.text = dict.value(forKey: "team_name") as? String ?? ConstantString.notAvailable
+                    let  homelogo = dict.value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dic.value(forKey: "position") as? Int ?? 0)"
+                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
                     
-                    if let total = dict1.value(forKey: "total") as? NSDictionary {
+                    if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
                         cell.Pts?.text = "\(total.value(forKey: "points") as? Int ?? 0)"
                     }
                     
-                    if let overall = dict1.value(forKey: "away") as? NSDictionary {
+                    if let overall = dict.value(forKey: "away") as? NSDictionary {
                         cell.D?.text = "\(overall.value(forKey: "draw") as? Int ?? 0)"
                         cell.pl?.text = "\(overall.value(forKey: "games_played") as? Int ?? 0)"
                         cell.L?.text = "\(overall.value(forKey: "lost") as? Int ?? 0)"
@@ -195,7 +195,8 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     func smatchdayapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-            let url = "\(baseurl)/Standing/Season/\(season_id)"
+            //Changed Sept
+            let url = "\(baseurl)/Standing/Season/\(16030)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):

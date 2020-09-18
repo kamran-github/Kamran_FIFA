@@ -150,7 +150,7 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
         TeamDetailViewController
-        myTeamsController.Teamname = dic.value(forKey: "hometeamname") as? String ?? ""
+        myTeamsController.Teamname = fixtureOverViewData?.localTeam?.data?.name ?? ConstantString.notAvailable
         myTeamsController.season_id = season_id
         //myTeamsController.legname = dic.value(forKey: "legname") as! String
         myTeamsController.team_id = homeId as AnyObject
@@ -160,7 +160,7 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
         TeamDetailViewController
-        myTeamsController.Teamname = dic.value(forKey: "visitorteamname") as? String ?? ""
+        myTeamsController.Teamname = fixtureOverViewData?.visitorTeam?.data?.name ?? ConstantString.notAvailable
         myTeamsController.season_id = season_id
         //myTeamsController.legname = dic.value(forKey: "legname") as! String
         myTeamsController.team_id = visitorId as AnyObject

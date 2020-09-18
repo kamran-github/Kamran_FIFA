@@ -172,7 +172,8 @@ class FixtureCommentaryViewController: UIViewController,UITableViewDelegate,UITa
     }
     func apiCall(){
         if ClassReachability.isConnectedToNetwork() {
-            let url = "\(baseurl)/Commentaries/Fixture/\(Fixture_id)"
+            //Changed Sept
+            let url = "\(baseurl)/Commentaries/Fixture/\(11886309)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
