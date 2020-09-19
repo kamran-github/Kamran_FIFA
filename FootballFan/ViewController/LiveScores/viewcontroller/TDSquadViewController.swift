@@ -38,30 +38,30 @@ class TDSquadViewController: UIViewController, UITableViewDelegate, UITableViewD
         switch sender.selectedSegmentIndex {
         case 0:
             selectedsegmentindex = 0
-        storytableview?.reloadData()
+            storytableview?.reloadData()
         case 1:
             selectedsegmentindex = 1
-         storytableview?.reloadData()
+            storytableview?.reloadData()
         case 2:
             selectedsegmentindex = 2
-         storytableview?.reloadData()
+            storytableview?.reloadData()
         default:
             break;
         }
     }
     
     func alertWithTitle(title: String!, message: String, ViewController: UIViewController) {
-           let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-           let action1 = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {_ in
-           });
-           alert.addAction(action1)
-           self.present(alert, animated: true, completion:nil)
-       }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {_ in
+        });
+        alert.addAction(action1)
+        self.present(alert, animated: true, completion:nil)
+    }
     
     func getSquadDeatilsAPI(){
         if ClassReachability.isConnectedToNetwork() {
             let url = "http://ffapitest.ifootballfan.com:7001/Squad/Team/Season/468/16030"
-//            let url = "\(baseurl)/\("Squad/Team/Season")/\(teamId)/\(season_id)"
+            //            let url = "\(baseurl)/\("Squad/Team/Season")/\(teamId)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -120,7 +120,7 @@ extension TDSquadViewController {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
     }
-   
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.init(hex: "EFEFEF")
@@ -143,29 +143,37 @@ extension TDSquadViewController {
             cell.playstate?.text = self.squadData?.json?.teamsquad?[indexPath.section].lineup![indexPath.row].detail?.nationality ?? ConstantString.notAvailable
             cell.number?.text = "\(self.squadData?.json?.teamsquad?[indexPath.section].lineup![indexPath.row].number ?? 0)"
             let url = URL(string:self.squadData?.json?.teamsquad?[indexPath.section].lineup![indexPath.row].detail?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg")
-            cell.imageView?.af.setImage(withURL: url!)
+            cell.playerimg?.af.setImage(withURL: url!)
         } else if selectedsegmentindex == 1 {
             cell.headername?.text = self.squadData?.json?.seasonsquad?[indexPath.section].lineup![indexPath.row].detail?.fullname ?? ConstantString.notAvailable
             cell.playstate?.text = self.squadData?.json?.seasonsquad?[indexPath.section].lineup![indexPath.row].detail?.nationality ?? ConstantString.notAvailable
             cell.number?.text = "\(self.squadData?.json?.seasonsquad?[indexPath.section].lineup![indexPath.row].number ?? 0)"
             let url = URL(string:self.squadData?.json?.seasonsquad?[indexPath.section].lineup![indexPath.row].detail?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg")
-            cell.imageView?.af.setImage(withURL: url!)
+            cell.playerimg?.af.setImage(withURL: url!)
         } else if selectedsegmentindex == 2 {
             cell.headername?.text = self.squadData?.json?.fixturesquad?[indexPath.section].lineup![indexPath.row].detail?.fullname ?? ConstantString.notAvailable
             cell.playstate?.text = self.squadData?.json?.fixturesquad?[indexPath.section].lineup![indexPath.row].detail?.nationality ?? ConstantString.notAvailable
             cell.number?.text = "\(self.squadData?.json?.fixturesquad?[indexPath.section].lineup![indexPath.row].number ?? 0)"
             let url = URL(string:self.squadData?.json?.fixturesquad?[indexPath.section].lineup![indexPath.row].detail?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg")
-            cell.imageView?.af.setImage(withURL: url!)
+            cell.playerimg?.af.setImage(withURL: url!)
         }
+        
         return cell
     }
     
-  
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
-      let playerViewController : PlayerViewController = storyBoard.instantiateViewController(withIdentifier: "PlayerD") as!
-      PlayerViewController
-      show(playerViewController, sender: self)
+        let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
+        let playerViewController : PlayerViewController = storyBoard.instantiateViewController(withIdentifier: "PlayerD") as!
+        PlayerViewController
+        if selectedsegmentindex == 0 {
+            playerViewController.playedID = self.squadData?.json?.teamsquad?[indexPath.section].lineup![indexPath.row].player_id ?? 0
+        } else if selectedsegmentindex == 1 {
+            playerViewController.playedID = self.squadData?.json?.seasonsquad?[indexPath.section].lineup![indexPath.row].player_id ?? 0
+        } else if selectedsegmentindex == 2 {
+            playerViewController.playedID = self.squadData?.json?.fixturesquad?[indexPath.section].lineup![indexPath.row].player_id ?? 0
+        }
+        show(playerViewController, sender: self)
     }
     
 }

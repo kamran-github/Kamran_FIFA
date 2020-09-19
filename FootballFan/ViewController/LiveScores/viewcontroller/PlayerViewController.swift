@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class PlayerViewController: UIViewController {
+    var playedID = 0
     fileprivate weak var categoryView: AHCategoryView!
     var childVCs = [UIViewController]()
       @IBOutlet weak var parentview: UIView?
@@ -69,6 +70,7 @@ extension PlayerViewController {
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let mybanter : BioViewController = storyBoard.instantiateViewController(withIdentifier: "bioplayer") as! BioViewController
         mybanter.dic = dic
+        mybanter.playedID = playedID
         childVCs.append(mybanter)
         
         /*       let LDsate : LDsateViewController = storyBoard.instantiateViewController(withIdentifier: "LDsate") as! LDsateViewController

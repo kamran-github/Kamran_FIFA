@@ -22,7 +22,7 @@ class PlayerCell: UITableViewCell {
         playerimg?.layer.borderWidth = 1.0
         playerimg?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor //self.contentView.tintColor.cgColor
         //UIColor(red:5.0, green: 122.0, blue: 255.0, alpha: 1.0) as! CGColor
-        playerimg?.layer.cornerRadius = 20.0
+        playerimg?.layer.cornerRadius = (playerimg?.frame.height)! / 2
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
