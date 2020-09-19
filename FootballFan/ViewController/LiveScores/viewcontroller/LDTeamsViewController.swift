@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 import Alamofire
 class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+ 
     var season_id = 0
-    
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
-    @IBOutlet weak var storytableview: UITableView?
     var arrstanding: [AnyObject] = []
+   
+    @IBOutlet weak var storytableview: UITableView?
     @IBOutlet weak var segments: UISegmentedControl?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         smatchdayapiCall()

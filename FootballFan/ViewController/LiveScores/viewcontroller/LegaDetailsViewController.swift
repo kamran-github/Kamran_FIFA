@@ -14,7 +14,7 @@ import ObjectMapper
 class LegaDetailsViewController: UIViewController {
     
     @IBOutlet weak var parentview: UIView?
-    
+    var fixtureArray : [Fixture]?
     var apd = UIApplication.shared.delegate as! AppDelegate
     var childVCs = [UIViewController]()
     var season_id = 0

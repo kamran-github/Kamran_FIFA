@@ -169,6 +169,7 @@ class LiveScoreViewController: UIViewController, UICollectionViewDelegate, UICol
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
         myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id ?? 0
         myTeamsController.legname = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name ?? ConstantString.notAvailable
+        myTeamsController.fixtureArray = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture
         show(myTeamsController, sender: self)
     }
     
@@ -180,6 +181,7 @@ class LiveScoreViewController: UIViewController, UICollectionViewDelegate, UICol
         myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id ?? 0
         myTeamsController.legname = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name ?? ConstantString.notAvailable
         myTeamsController.tabatindex = 2
+        myTeamsController.fixtureArray = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture
         show(myTeamsController, sender: self)
     }
     
@@ -292,7 +294,6 @@ extension LiveScoreViewController {
             }
             return 0
         } else {
-            
             let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
             messageLabel.text = "Retrieving data.\nPlease wait."
             messageLabel.numberOfLines = 0;
@@ -300,7 +301,6 @@ extension LiveScoreViewController {
             messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
             messageLabel.sizeToFit()
             self.tableView.backgroundView = messageLabel;
-            
             return 0
         }
         

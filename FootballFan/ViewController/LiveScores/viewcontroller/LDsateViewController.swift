@@ -68,6 +68,8 @@ class LDsateViewController: UIViewController {
     var selectedsegmentindex:Int = 0
     var arrstanding: [AnyObject] = []
     var leagueJson : LeagueStatsJson?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUidate()

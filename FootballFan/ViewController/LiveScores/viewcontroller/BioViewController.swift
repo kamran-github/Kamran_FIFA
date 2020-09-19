@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import Alamofire
+import ObjectMapper
 class BioViewController: UIViewController {
     var season_id = 0
+    var playerData : Lineup?
     var dic: NSDictionary = NSDictionary()
     var apd = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var playstate: UILabel?
@@ -32,15 +34,14 @@ class BioViewController: UIViewController {
         
     }
     func updateUI(){
-        let detail = dic.value(forKey: "detail") as! NSDictionary
-        playername?.text = detail.value(forKey: "fullname") as? String
-        number?.text = "\(dic.value(forKey: "number") as! Int)"
-        let  homelogo = detail.value(forKey: "image_path") as! String
         
+        playername?.text = playerData?.detail?.fullname
+        number?.text = "\(playerData?.number ?? 0)"
+        let  homelogo = playerData?.detail?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
         let url = URL(string:homelogo)!
-        
         playerimg?.af.setImage(withURL: url)
-        let position = dic.value(forKey: "position") as! String
+        
+        let position = playerData?.position
         if(position == "A"){
             playstate?.text = "Attacker"
         }
@@ -59,10 +60,10 @@ class BioViewController: UIViewController {
         else{
             playstate?.text = position
         }
-        nationality?.text = detail.value(forKey: "nationality") as? String
-         nationality?.text = detail.value(forKey: "height") as? String
-        nationality?.text = detail.value(forKey: "weight") as? String
-        nationality?.text = detail.value(forKey: "birthdate") as? String
+        nationality?.text = playerData?.detail?.nationality
+         nationality?.text = playerData?.detail?.height
+        nationality?.text = playerData?.detail?.weight
+        nationality?.text = playerData?.detail?.birthdate
         
     }
 }

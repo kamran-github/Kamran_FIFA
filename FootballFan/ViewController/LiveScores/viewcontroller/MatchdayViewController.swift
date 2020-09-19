@@ -23,6 +23,7 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
     var apd = UIApplication.shared.delegate as! AppDelegate
     var Allarrfixture: [AnyObject] = []
     var arrfixture: [AnyObject] = []
+    var matchFixture : Fixture?
     
     
     override func viewDidLoad() {
@@ -285,21 +286,29 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dic = Allarrfixture[indexPath.row]
+        
         if(tableView == poptable){
-            arrfixture = dic.value(forKey: "fixture") as! [AnyObject]
+            let dic = Allarrfixture[indexPath.row]
+            arrfixture = dic.value(forKey: "fixture") as? [AnyObject] ?? []
             storytableview?.reloadData()
             popupView?.isHidden = true
             Dropdownlabel?.text = "MatchDay \(dic.value(forKey: "name") as? Int ?? 0)"
         } else {
-            let dict1 = arrfixture[indexPath.row] as! NSDictionary
-            let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
-            let myTeamsController : FixturescoreViewController = storyBoard.instantiateViewController(withIdentifier: "fixture") as!
-            FixturescoreViewController
-            myTeamsController.season_id = dict1.value(forKey: "season_id") as? Int ?? 0
-            myTeamsController.legname = dic.value(forKey: "name") as? String ?? ""
-            myTeamsController.dict = dict1 as NSDictionary
-            show(myTeamsController, sender: self)
-        } 
+            let dic = arrfixture[indexPath.section]
+            let mili = String(dic.value(forKey: "date") as? Int ?? 0)
+            if let arr = dic.value(forKey: mili ) as? NSArray {
+                if let dict1 = arr[indexPath.row] as? NSDictionary {
+                    let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
+                    let myTeamsController : FixturescoreViewController = storyBoard.instantiateViewController(withIdentifier: "fixture") as!
+                    FixturescoreViewController
+                    myTeamsController.season_id = dict1.value(forKey: "season_id") as? Int ?? 0
+                    myTeamsController.legname = dic.value(forKey: "name") as? String ?? ""
+                    myTeamsController.dict = dict1 as NSDictionary
+                    self.matchFixture = Mapper<Fixture>().map(JSONObject: dict1)
+                    myTeamsController.fixtureData = self.matchFixture
+                    show(myTeamsController, sender: self)
+                }
+            }
+        }
     }
 }
