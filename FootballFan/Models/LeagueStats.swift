@@ -20,6 +20,367 @@ struct LeagueStats : Mappable {
 
 }
 
+struct Season_TopScorer : Mappable {
+    var id : Int?
+    var player_id : Int?
+    var team_id : Int?
+    var position_id : Int?
+    var country_id : Int?
+    var fullname : String?
+    var nationality : String?
+    var birthdate : String?
+    var height : String?
+    var weight : String?
+    var image_path : String?
+    var firstname : String?
+    var lastname : String?
+    var birthcountry : String?
+    var birthplace : String?
+    var common_name : String?
+    var display_name : String?
+    var position : String?
+    var team : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        player_id <- map["player_id"]
+        team_id <- map["team_id"]
+        position_id <- map["position_id"]
+        country_id <- map["country_id"]
+        fullname <- map["fullname"]
+        nationality <- map["nationality"]
+        birthdate <- map["birthdate"]
+        height <- map["height"]
+        weight <- map["weight"]
+        image_path <- map["image_path"]
+        firstname <- map["firstname"]
+        lastname <- map["lastname"]
+        birthcountry <- map["birthcountry"]
+        birthplace <- map["birthplace"]
+        common_name <- map["common_name"]
+        display_name <- map["display_name"]
+        position <- map["position"]
+        team <- map["team"]
+    }
+
+}
+
+struct Season_Assist_TopScorer : Mappable {
+    var id : Int?
+    var player_id : Int?
+    var team_id : Int?
+    var position_id : Int?
+    var country_id : Int?
+    var fullname : String?
+    var nationality : String?
+    var birthdate : String?
+    var height : String?
+    var weight : String?
+    var image_path : String?
+    var firstname : String?
+    var lastname : String?
+    var birthcountry : String?
+    var birthplace : String?
+    var common_name : String?
+    var display_name : String?
+    var position : String?
+    var team : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        player_id <- map["player_id"]
+        team_id <- map["team_id"]
+        position_id <- map["position_id"]
+        country_id <- map["country_id"]
+        fullname <- map["fullname"]
+        nationality <- map["nationality"]
+        birthdate <- map["birthdate"]
+        height <- map["height"]
+        weight <- map["weight"]
+        image_path <- map["image_path"]
+        firstname <- map["firstname"]
+        lastname <- map["lastname"]
+        birthcountry <- map["birthcountry"]
+        birthplace <- map["birthplace"]
+        common_name <- map["common_name"]
+        display_name <- map["display_name"]
+        position <- map["position"]
+        team <- map["team"]
+    }
+
+}
+
+struct Goalkeeper_Most_CleanSheets : Mappable {
+    var id : Int?
+    var player_id : Int?
+    var team_id : Int?
+    var position_id : Int?
+    var country_id : Int?
+    var fullname : String?
+    var nationality : String?
+    var birthdate : String?
+    var height : String?
+    var weight : String?
+    var image_path : String?
+    var firstname : String?
+    var lastname : String?
+    var birthcountry : String?
+    var birthplace : String?
+    var common_name : String?
+    var display_name : String?
+    var position : String?
+    var team : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        player_id <- map["player_id"]
+        team_id <- map["team_id"]
+        position_id <- map["position_id"]
+        country_id <- map["country_id"]
+        fullname <- map["fullname"]
+        nationality <- map["nationality"]
+        birthdate <- map["birthdate"]
+        height <- map["height"]
+        weight <- map["weight"]
+        image_path <- map["image_path"]
+        firstname <- map["firstname"]
+        lastname <- map["lastname"]
+        birthcountry <- map["birthcountry"]
+        birthplace <- map["birthplace"]
+        common_name <- map["common_name"]
+        display_name <- map["display_name"]
+        position <- map["position"]
+        team <- map["team"]
+    }
+
+}
+
+struct Team_With_Most_Corner : Mappable {
+    var id : Int?
+    var team_id : Int?
+    var legacy_id : Int?
+    var name : String?
+    var short_code : String?
+    var country_id : Int?
+    var national_team : Bool?
+    var founded : Int?
+    var logo_path : String?
+    var venue_id : Int?
+    var current_season_id : Int?
+    var season_id : Int?
+    var stats : Stats?
+    var league : [String]?
+    var standings : [String]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        team_id <- map["team_id"]
+        legacy_id <- map["legacy_id"]
+        name <- map["name"]
+        short_code <- map["short_code"]
+        country_id <- map["country_id"]
+        national_team <- map["national_team"]
+        founded <- map["founded"]
+        logo_path <- map["logo_path"]
+        venue_id <- map["venue_id"]
+        current_season_id <- map["current_season_id"]
+        season_id <- map["season_id"]
+        stats <- map["stats"]
+        league <- map["league"]
+        standings <- map["standings"]
+    }
+
+}
+
+struct Team_With_Most_Clean_Sheet : Mappable {
+    var id : Int?
+    var team_id : Int?
+    var legacy_id : Int?
+    var name : String?
+    var short_code : String?
+    var country_id : Int?
+    var national_team : Bool?
+    var founded : Int?
+    var logo_path : String?
+    var venue_id : Int?
+    var current_season_id : Int?
+    var season_id : Int?
+    var stats : Stats?
+    var league : [String]?
+    var standings : [String]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        team_id <- map["team_id"]
+        legacy_id <- map["legacy_id"]
+        name <- map["name"]
+        short_code <- map["short_code"]
+        country_id <- map["country_id"]
+        national_team <- map["national_team"]
+        founded <- map["founded"]
+        logo_path <- map["logo_path"]
+        venue_id <- map["venue_id"]
+        current_season_id <- map["current_season_id"]
+        season_id <- map["season_id"]
+        stats <- map["stats"]
+        league <- map["league"]
+        standings <- map["standings"]
+    }
+
+}
+
+struct Team_With_Most_Goals : Mappable {
+    var id : Int?
+    var team_id : Int?
+    var legacy_id : Int?
+    var name : String?
+    var short_code : String?
+    var country_id : Int?
+    var national_team : Bool?
+    var founded : Int?
+    var logo_path : String?
+    var venue_id : Int?
+    var current_season_id : Int?
+    var season_id : Int?
+    var stats : Stats?
+    var league : [String]?
+    var standings : [String]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        team_id <- map["team_id"]
+        legacy_id <- map["legacy_id"]
+        name <- map["name"]
+        short_code <- map["short_code"]
+        country_id <- map["country_id"]
+        national_team <- map["national_team"]
+        founded <- map["founded"]
+        logo_path <- map["logo_path"]
+        venue_id <- map["venue_id"]
+        current_season_id <- map["current_season_id"]
+        season_id <- map["season_id"]
+        stats <- map["stats"]
+        league <- map["league"]
+        standings <- map["standings"]
+    }
+
+}
+
+struct Team_With_Most_Goals_Per_Match : Mappable {
+    var id : Int?
+    var team_id : Int?
+    var legacy_id : Int?
+    var name : String?
+    var short_code : String?
+    var country_id : Int?
+    var national_team : Bool?
+    var founded : Int?
+    var logo_path : String?
+    var venue_id : Int?
+    var current_season_id : Int?
+    var season_id : Int?
+    var stats : Stats?
+    var league : [String]?
+    var standings : [String]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        team_id <- map["team_id"]
+        legacy_id <- map["legacy_id"]
+        name <- map["name"]
+        short_code <- map["short_code"]
+        country_id <- map["country_id"]
+        national_team <- map["national_team"]
+        founded <- map["founded"]
+        logo_path <- map["logo_path"]
+        venue_id <- map["venue_id"]
+        current_season_id <- map["current_season_id"]
+        season_id <- map["season_id"]
+        stats <- map["stats"]
+        league <- map["league"]
+        standings <- map["standings"]
+    }
+
+}
+
+struct Team_With_Most_Conceded : Mappable {
+    var id : Int?
+    var team_id : Int?
+    var legacy_id : Int?
+    var name : String?
+    var short_code : String?
+    var country_id : Int?
+    var national_team : Bool?
+    var founded : Int?
+    var logo_path : String?
+    var venue_id : Int?
+    var current_season_id : Int?
+    var season_id : Int?
+    var stats : Stats?
+    var league : [String]?
+    var standings : [String]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        team_id <- map["team_id"]
+        legacy_id <- map["legacy_id"]
+        name <- map["name"]
+        short_code <- map["short_code"]
+        country_id <- map["country_id"]
+        national_team <- map["national_team"]
+        founded <- map["founded"]
+        logo_path <- map["logo_path"]
+        venue_id <- map["venue_id"]
+        current_season_id <- map["current_season_id"]
+        season_id <- map["season_id"]
+        stats <- map["stats"]
+        league <- map["league"]
+        standings <- map["standings"]
+    }
+
+}
+
+
 struct LeagueStatsJson : Mappable {
     var id : Int?
     var season_id : Int?
@@ -29,14 +390,14 @@ struct LeagueStatsJson : Mappable {
     var current_round_id : Int?
     var current_stage_id : Int?
     var stats : Statistics?
-    var team_With_Most_Conceded : String?
-    var team_With_Most_Corner : String?
-    var team_With_Most_Goals : String?
-    var team_With_Most_Goals_Per_Match : String?
-    var team_With_Most_Clean_Sheet : String?
-    var season_TopScorer : String?
-    var season_Assist_TopScorer : String?
-    var goalkeeper_Most_CleanSheets : String?
+    var team_With_Most_Conceded : Team_With_Most_Conceded?
+    var team_With_Most_Corner : Team_With_Most_Corner?
+    var team_With_Most_Goals : Team_With_Most_Goals?
+    var team_With_Most_Goals_Per_Match : Team_With_Most_Goals_Per_Match?
+    var team_With_Most_Clean_Sheet : Team_With_Most_Clean_Sheet?
+    var season_TopScorer : Season_TopScorer?
+    var season_Assist_TopScorer : Season_Assist_TopScorer?
+    var goalkeeper_Most_CleanSheets : Goalkeeper_Most_CleanSheets?
 
     init?(map: Map) {
 

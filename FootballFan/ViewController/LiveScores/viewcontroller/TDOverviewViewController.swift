@@ -89,6 +89,7 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     func teamapiCall(){
         if ClassReachability.isConnectedToNetwork() {
             //Changed Sept
+            
             let url = "\(baseurl)/Team/Season/\(468)/\(16030)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
@@ -109,8 +110,6 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                                 self.Dropdownimg?.af.setImage(withURL: url)
                                 self.UIUpdate()
                             }
-                            
-                            
                         }else{
                             self.childView?.isHidden = true
                         }
@@ -121,7 +120,6 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                     // error handling
                     
                 }
-                
             }
         }
         else {

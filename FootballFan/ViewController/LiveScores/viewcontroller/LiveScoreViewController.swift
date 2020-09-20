@@ -331,6 +331,7 @@ extension LiveScoreViewController {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.init(hex: "EFEFEF")//UIColor.colorWithHexString(hexStr: "#0075d4")
         //let dic = arrscore[section]
+        header.textLabel?.frame.origin.x = 40
         header.textLabel?.textColor = UIColor.black
         header.textLabel?.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
         if let viewWithTag = self.view.viewWithTag(kHeaderSectionTag + section) {
@@ -348,7 +349,7 @@ extension LiveScoreViewController {
         theImageView.isUserInteractionEnabled = true
         header.addSubview(theImageView)
         
-        let imgligelogo = UIImageView(frame: CGRect(x: 10, y: 13, width: 20, height: 20));
+        let imgligelogo = UIImageView(frame: CGRect(x: 10, y: 5, width: 30, height: 30));
         let url = URL(string:sortedliveScoreArray[selectedJsonIndex].valueObject[section].logo_path ?? "")
         if let logourl = url {
             imgligelogo.af.setImage(withURL: logourl)
@@ -404,7 +405,7 @@ extension LiveScoreViewController {
                 }
                 if let visitorTeamlogo = visitorTeamData.logo_path{
                     let url = URL(string:visitorTeamlogo)!
-                    cell.imghometeam?.af.setImage(withURL: url)
+                    cell.imgvisitteam?.af.setImage(withURL: url)
                 }
                 
             }}

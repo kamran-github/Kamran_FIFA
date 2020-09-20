@@ -308,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7DY-dQ-cxp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5596" y="344"/>
+            <point key="canvasLocation" x="-5597.1014492753629" y="343.52678571428572"/>
         </scene>
         <!--legeDetail-->
         <scene sceneID="27K-sp-cPV">
@@ -4012,6 +4012,18 @@
                         <outlet property="number_of_redcards" destination="Goh-bq-Rnu" id="hTO-1P-CAh"/>
                         <outlet property="number_of_yellowcards" destination="cCq-Ew-dpE" id="CDb-c7-Q0t"/>
                         <outlet property="number_of_yellowredcards" destination="83t-0H-X5E" id="7TN-Zg-aBJ"/>
+                        <outlet property="playerCountryLbl1" destination="T1U-H8-gbc" id="YQJ-bk-QAK"/>
+                        <outlet property="playerCountryLbl2" destination="cHD-X7-rab" id="bMF-kP-eGI"/>
+                        <outlet property="playerCountryLbl3" destination="mtk-BX-b1c" id="PbN-UQ-cCX"/>
+                        <outlet property="playerimage1" destination="tMK-0s-Nj8" id="w1g-Us-UeC"/>
+                        <outlet property="playerimage2" destination="hm1-HQ-oA1" id="p13-49-8yt"/>
+                        <outlet property="playerimage3" destination="eCl-h7-6r7" id="F8g-WM-UU9"/>
+                        <outlet property="playerlbl1" destination="icn-1h-lzx" id="cms-a9-9wW"/>
+                        <outlet property="playerlbl2" destination="i2M-mz-aC8" id="OoD-ys-vKL"/>
+                        <outlet property="playerlbl3" destination="Lff-Tp-rkd" id="kfU-rY-wr6"/>
+                        <outlet property="plyaernumLbl1" destination="h9t-GH-Juw" id="WBf-e3-vS0"/>
+                        <outlet property="plyaernumLbl2" destination="HtE-TV-UFH" id="cfC-uB-JcH"/>
+                        <outlet property="plyaernumLbl3" destination="XCq-eD-sPH" id="ltu-fs-T2p"/>
                         <outlet property="progress0_15" destination="6Ni-ae-ypg" id="Q9V-Ps-LcM"/>
                         <outlet property="progress0_15value" destination="B2d-cO-1eb" id="eMg-Oj-QS5"/>
                         <outlet property="progress15_30" destination="gtX-0J-iho" id="2t9-0v-a52"/>
@@ -4024,6 +4036,26 @@
                         <outlet property="progress60_75value" destination="1kH-6V-6R2" id="syz-pB-cFe"/>
                         <outlet property="progress75_90" destination="d3b-ER-rYf" id="t2T-CE-iZP"/>
                         <outlet property="progress75_90value" destination="arc-Kg-kq1" id="uJa-PM-p5u"/>
+                        <outlet property="teamCountryLbl1" destination="HFt-By-gdW" id="sWM-FD-Fjm"/>
+                        <outlet property="teamCountryLbl2" destination="4Dd-KX-3TM" id="yOT-TN-wQ5"/>
+                        <outlet property="teamCountryLbl3" destination="5aN-o9-F4v" id="TtY-fb-fXR"/>
+                        <outlet property="teamCountryLbl4" destination="NNI-Z9-Eep" id="R9r-3D-bg7"/>
+                        <outlet property="teamCountryLbl5" destination="4zL-Gn-Zon" id="ISy-x4-5uj"/>
+                        <outlet property="teamimage1" destination="dzi-s2-lnE" id="FMh-zf-wGc"/>
+                        <outlet property="teamimage2" destination="gJb-yD-XkQ" id="AHl-VM-lM2"/>
+                        <outlet property="teamimage3" destination="AUt-p1-ekX" id="DVt-PR-YMe"/>
+                        <outlet property="teamimage4" destination="DS3-ow-Fh7" id="23b-CT-CEf"/>
+                        <outlet property="teamimage5" destination="eGT-Y3-ACQ" id="Ii4-8J-UVZ"/>
+                        <outlet property="teamlbl1" destination="Ixr-L7-Hx6" id="Lwx-Rg-UyO"/>
+                        <outlet property="teamlbl2" destination="JTC-zd-Rzb" id="Mkm-xX-6HF"/>
+                        <outlet property="teamlbl3" destination="Q3L-ko-ILy" id="Zsf-vi-zRm"/>
+                        <outlet property="teamlbl4" destination="X7r-L1-sqs" id="zNC-Gx-fjN"/>
+                        <outlet property="teamlbl5" destination="aaa-fb-dYi" id="rj3-Xl-l0K"/>
+                        <outlet property="teamnumLbl1" destination="rnB-Sx-UUt" id="AOi-f3-XYU"/>
+                        <outlet property="teamnumLbl2" destination="rSV-7s-sYL" id="af3-cX-H78"/>
+                        <outlet property="teamnumLbl3" destination="UV0-4I-oTM" id="Ibo-go-52c"/>
+                        <outlet property="teamnumLbl4" destination="c4y-wk-Wpm" id="frd-el-i8n"/>
+                        <outlet property="teamnumLbl5" destination="8n1-lb-lpg" id="d1o-Bt-LcW"/>
                         <outlet property="winpercentageAll" destination="DIn-fe-cj9" id="HST-88-8gJ"/>
                         <outlet property="winpercentageAway" destination="lcD-Pl-kxk" id="UCe-Em-vzB"/>
                         <outlet property="winpercentageHome" destination="j0D-Bc-nan" id="Ehg-ip-Jcy"/>

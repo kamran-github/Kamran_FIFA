@@ -62,6 +62,47 @@ class LDsateViewController: UIViewController {
     @IBOutlet weak var avg_yellowcards_per_match: UILabel?
     @IBOutlet weak var childview: UIView?
     
+    @IBOutlet weak var playerimage1: UIImageView!
+    @IBOutlet weak var playerlbl1: UILabel!
+    @IBOutlet weak var plyaernumLbl1: UILabel!
+    @IBOutlet weak var playerCountryLbl1: UILabel!
+    
+    @IBOutlet weak var playerimage2: UIImageView!
+    @IBOutlet weak var playerlbl2: UILabel!
+    @IBOutlet weak var plyaernumLbl2: UILabel!
+    @IBOutlet weak var playerCountryLbl2: UILabel!
+    
+    @IBOutlet weak var playerimage3: UIImageView!
+    @IBOutlet weak var playerlbl3: UILabel!
+    @IBOutlet weak var plyaernumLbl3: UILabel!
+    @IBOutlet weak var playerCountryLbl3: UILabel!
+    
+    @IBOutlet weak var teamimage1: UIImageView!
+    @IBOutlet weak var teamlbl1: UILabel!
+    @IBOutlet weak var teamnumLbl1: UILabel!
+    @IBOutlet weak var teamCountryLbl1: UILabel!
+    
+    @IBOutlet weak var teamimage2: UIImageView!
+    @IBOutlet weak var teamlbl2: UILabel!
+    @IBOutlet weak var teamnumLbl2: UILabel!
+    @IBOutlet weak var teamCountryLbl2: UILabel!
+    
+    @IBOutlet weak var teamimage3: UIImageView!
+    @IBOutlet weak var teamlbl3: UILabel!
+    @IBOutlet weak var teamnumLbl3: UILabel!
+    @IBOutlet weak var teamCountryLbl3: UILabel!
+    
+    @IBOutlet weak var teamimage4: UIImageView!
+    @IBOutlet weak var teamlbl4: UILabel!
+    @IBOutlet weak var teamnumLbl4: UILabel!
+    @IBOutlet weak var teamCountryLbl4: UILabel!
+    
+    @IBOutlet weak var teamimage5: UIImageView!
+    @IBOutlet weak var teamlbl5: UILabel!
+    @IBOutlet weak var teamnumLbl5: UILabel!
+    @IBOutlet weak var teamCountryLbl5: UILabel!
+    
+    
     var season_id = 0
     var dic: NSDictionary = NSDictionary()
     var apd = UIApplication.shared.delegate as! AppDelegate
@@ -164,6 +205,104 @@ class LDsateViewController: UIViewController {
             }else{
                 progress75_90?.progress = 0
             }
+            
+            //Top player details
+            let playerURL1 = URL(string:String(leagueJson?.season_TopScorer?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl1 = playerURL1 {
+                playerimage1.af.setImage(withURL: logourl1)
+            }
+            playerimage1?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            playerimage1?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            playerimage1?.layer.borderWidth = 1
+            playerimage1?.clipsToBounds = true
+            playerlbl1.text = leagueJson?.season_TopScorer?.fullname ?? ConstantString.notAvailable
+            plyaernumLbl1.text = leagueJson?.season_TopScorer?.position ?? ConstantString.notAvailable
+            playerCountryLbl1.text = leagueJson?.season_TopScorer?.nationality ?? ConstantString.notAvailable
+            
+           let playerURL2 = URL(string:String(leagueJson?.season_Assist_TopScorer?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl2 = playerURL2 {
+                playerimage2.af.setImage(withURL: logourl2)
+            }
+            playerimage2?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            playerimage2?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            playerimage2?.layer.borderWidth = 1
+            playerimage2?.clipsToBounds = true
+            playerlbl2.text = leagueJson?.season_Assist_TopScorer?.fullname ?? ConstantString.notAvailable
+            plyaernumLbl2.text = leagueJson?.season_Assist_TopScorer?.position ?? ConstantString.notAvailable
+            playerCountryLbl2.text = leagueJson?.season_Assist_TopScorer?.nationality ?? ConstantString.notAvailable
+            
+            let playerURL3 = URL(string:String(leagueJson?.goalkeeper_Most_CleanSheets?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl3 = playerURL3 {
+                playerimage3.af.setImage(withURL: logourl3)
+            }
+            playerimage3?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            playerimage3?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            playerimage3?.layer.borderWidth = 1
+            playerimage3?.clipsToBounds = true
+            playerlbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.fullname ?? ConstantString.notAvailable
+            plyaernumLbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.position ?? ConstantString.notAvailable
+            playerCountryLbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.nationality ?? ConstantString.notAvailable
+            
+            
+            let imageURL1 = URL(string:String(leagueJson?.team_With_Most_Clean_Sheet?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl1 = imageURL1 {
+                teamimage1.af.setImage(withURL: logourl1)
+            }
+            teamimage1?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            teamimage1?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            teamimage1?.layer.borderWidth = 1
+            teamimage1?.clipsToBounds = true
+            teamlbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.name ?? ConstantString.notAvailable
+            teamnumLbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.short_code ?? ConstantString.notAvailable
+            teamCountryLbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.name ?? ConstantString.notAvailable
+            
+            let imageURL2 = URL(string:String(leagueJson?.team_With_Most_Corner?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl2 = imageURL2 {
+                teamimage1.af.setImage(withURL: logourl2)
+            }
+            teamimage2?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            teamimage2?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            teamimage2?.layer.borderWidth = 1
+            teamimage2?.clipsToBounds = true
+            teamlbl2.text = leagueJson?.team_With_Most_Corner?.name ?? ConstantString.notAvailable
+            teamnumLbl2.text = leagueJson?.team_With_Most_Corner?.short_code ?? ConstantString.notAvailable
+            teamCountryLbl2.text = leagueJson?.team_With_Most_Corner?.name ?? ConstantString.notAvailable
+            
+            let imageURL3 = URL(string:String(leagueJson?.team_With_Most_Goals?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl3 = imageURL3 {
+                teamimage3.af.setImage(withURL: logourl3)
+            }
+            teamimage3?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            teamimage3?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            teamimage3?.layer.borderWidth = 1
+            teamimage3?.clipsToBounds = true
+            teamlbl3.text = leagueJson?.team_With_Most_Goals?.name ?? ConstantString.notAvailable
+            teamnumLbl3.text = leagueJson?.team_With_Most_Goals?.short_code ?? ConstantString.notAvailable
+            teamCountryLbl3.text = leagueJson?.team_With_Most_Goals?.name ?? ConstantString.notAvailable
+            
+            let imageURL4 = URL(string:String(leagueJson?.team_With_Most_Conceded?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl4 = imageURL4 {
+                teamimage1.af.setImage(withURL: logourl4)
+            }
+            teamimage4?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            teamimage4?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            teamimage4?.layer.borderWidth = 1
+            teamimage4?.clipsToBounds = true
+            teamlbl4.text = leagueJson?.team_With_Most_Conceded?.name ?? ConstantString.notAvailable
+            teamnumLbl4.text = leagueJson?.team_With_Most_Conceded?.short_code ?? ConstantString.notAvailable
+            teamCountryLbl4.text = leagueJson?.team_With_Most_Conceded?.name ?? ConstantString.notAvailable
+            
+            let imageURL5 = URL(string:String(leagueJson?.team_With_Most_Goals_Per_Match?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
+            if let logourl5 = imageURL5 {
+                teamimage5.af.setImage(withURL: logourl5)
+            }
+            teamimage5?.layer.cornerRadius = (playerimage1?.frame.height)! / 2
+            teamimage5?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
+            teamimage5?.layer.borderWidth = 1
+            teamimage5?.clipsToBounds = true
+            teamlbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.name ?? ConstantString.notAvailable
+            teamnumLbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.short_code ?? ConstantString.notAvailable
+            teamCountryLbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.name ?? ConstantString.notAvailable
         }
         else{
             childview?.isHidden = true
