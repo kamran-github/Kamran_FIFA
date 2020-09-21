@@ -359,8 +359,9 @@ extension LiveScoreViewController {
         imgligelogo.isUserInteractionEnabled = true
         header.addSubview(imgligelogo)
         let messageLabel = UILabel(frame: CGRect(x: 50, y: 2, width: 230, height: 30))
+        messageLabel.text = ""
         messageLabel.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
-        messageLabel.backgroundColor = UIColor.clear
+        messageLabel.backgroundColor = UIColor.init(hex: "EFEFEF")
         messageLabel.textColor = UIColor.black
         header.addSubview(messageLabel)
         // make headers touchable

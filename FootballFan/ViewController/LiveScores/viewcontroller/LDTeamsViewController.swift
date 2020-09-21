@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import Alamofire
 class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    var serialNum = 1
     var season_id = 0
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
     var arrstanding: [AnyObject] = []
+    var serialArray = [[Int]]()
    
     @IBOutlet weak var storytableview: UITableView?
     @IBOutlet weak var segments: UISegmentedControl?
@@ -109,7 +109,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(serialNum)"
+                    cell.Sno?.text = "\(serialArray[indexPath.section][indexPath.row])"
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? "ConstantString.notAvailable")"
                         cell.Pts?.text = "\(total.value(forKey: "points") as? Int ?? 0)"
@@ -130,7 +130,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(serialNum)"
+                    cell.Sno?.text = "\(serialArray[indexPath.section][indexPath.row])"
                     
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
@@ -154,7 +154,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(serialNum)"
+                    cell.Sno?.text = "\(serialArray[indexPath.section][indexPath.row])"
                     
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
@@ -174,7 +174,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 }
             }
         }
-        serialNum = serialNum+1 
+       
         return cell
         
     }
@@ -197,8 +197,8 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     func smatchdayapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-            //Changed Sept
-            let url = "\(baseurl)/Standing/Season/\(16030)"
+           var serialNum = 1
+            let url = "\(baseurl)/Standing/Season/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -206,6 +206,17 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                         let status1: Bool = json["success"] as! Bool
                         if(status1){
                             self.arrstanding = json["json"] as! [AnyObject]
+                            for index in 0..<self.arrstanding.count {
+                                let dic = self.arrstanding[index]
+                                let result = dic.value(forKey: "result") as! String
+                                let arr = dic.value(forKey: result  ) as! NSArray
+                                var tempSerialArray = [Int]()
+                                for _ in 0..<arr.count {
+                                    tempSerialArray.append(serialNum)
+                                    serialNum = serialNum+1
+                                }
+                                self.serialArray.append(tempSerialArray)
+                            }
                             self.storytableview?.reloadData()
                         }
                         else{

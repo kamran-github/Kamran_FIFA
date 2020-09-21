@@ -88,8 +88,8 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     }
     func teamapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-            let url = "http://ffapitest.ifootballfan.com:7001/Team/Season/Standing/468/16030"
-            //let url = "\(baseurl)/Team/Season/Standing/\(team_id)/\(season_id)"
+//            let url = "http://ffapitest.ifootballfan.com:7001/Team/Season/Standing/468/16030"
+            let url = "\(baseurl)/Team/Season/Standing/\(team_id)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -301,14 +301,14 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                                             if let visitorTeam = dict.value(forKey: "visitorTeam") {
                                                 if let localTeamDetil = (visitorTeam as AnyObject).value(forKey: "data") {
                                                     if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
-                                                        let visitorname = name as! String
-                                                        let visitorlogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
+                                                        let visitorname = name as? String
+                                                        let visitorlogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
                                                         visitteam?.text = visitorname
                                                         let url1 = URL(string:visitorlogo)!
                                                         imgvisitteam?.af.setImage(withURL: url1 )
                                                     }}}
                                             let calendar = Calendar(identifier: .gregorian)
-                                            let fixturetime:Int64 = dict.value(forKey: "fixtureTime") as! Int64
+                                            let fixturetime:Int64 = dict.value(forKey: "fixtureTime") as? Int64 ?? 0
                                             let startOfDate = calendar.startOfDay(for: Date())
                                             let timeinterval1 = startOfDate.timeIntervalSince1970 * 1000
                                             let time = Int64(timeinterval1.rounded())
@@ -319,20 +319,29 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                                                 lblstatus?.isHidden = true
                                             }
                                             if let scoredic = dict.value(forKey: "scores") {
-                                                let homescore = (scoredic as AnyObject).value(forKey: "localteam_score") as! Int
-                                                let visitorscore = (scoredic as AnyObject).value(forKey: "visitorteam_score") as! Int
-                                                lbltime?.text = "\(homescore) : \(visitorscore)"
+                                                let homescore = (scoredic as AnyObject).value(forKey: "localteam_score") as? Int
+                                                let visitorscore = (scoredic as AnyObject).value(forKey: "visitorteam_score") as? Int
+                                                lbltime?.text = "\(homescore ?? 0) : \(visitorscore ?? 0)"
                                             }
-                                            let avggoal = statsdic.value(forKey: "avg_goals_per_game_scored") as! NSDictionary
-                                            let goalprogress = avggoal.value(forKey: "total") as! Float
-                                            goalpro?.progress = goalprogress/100
-                                            lblgoalvalue?.text = "\(goalprogress)"
-                                            let avggoalcon = statsdic.value(forKey: "avg_goals_per_game_conceded") as! NSDictionary
-                                            let goalconprogress = (avggoalcon.value(forKey: "total") as! NSNumber).floatValue
-                                            lblgoalconvalue?.text = "\(goalconprogress)"
-                                            goalcon?.progress = goalconprogress/100
+                                            if let avggoal = statsdic.value(forKey: "avg_goals_per_game_scored") as? NSDictionary {
+                                                let goalprogress = avggoal.value(forKey: "total") as? Float
+                                                goalpro?.progress = (goalprogress ?? 0.0)/100
+                                                lblgoalvalue?.text = "\(goalprogress ?? 0.0)"
+                                            } else {
+                                                goalpro?.progress = 0.0
+                                                lblgoalvalue?.text = "\("0.0")"
+                                            }
                                             
-                                            let possessionvalue = Float(statsdic.value(forKey: "avg_ball_possession_percentage") as! String)
+                                            if let avggoalcon = statsdic.value(forKey: "avg_goals_per_game_conceded") as? NSDictionary {
+                                                let goalconprogress = (avggoalcon.value(forKey: "total") as? NSNumber)?.floatValue
+                                                lblgoalconvalue?.text = "\(goalconprogress ?? 0.0)"
+                                                goalcon?.progress = (goalconprogress ?? 0.0)/100
+                                            } else {
+                                                lblgoalconvalue?.text = "\("0.0")"
+                                                goalcon?.progress = 0.0
+                                            }
+                                        
+                                            let possessionvalue = Float(statsdic.value(forKey: "avg_ball_possession_percentage") as? String ?? "0.0")
                                             lblpossessionvalue?.text = "\(String(describing: possessionvalue!))"
                                             possession?.progress = possessionvalue!/100
                                         }
@@ -362,4 +371,23 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
+    @IBAction func seeAllMatchesAction(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
+        let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
+        myTeamsController.season_id = season_id
+        myTeamsController.tabatindex = 0
+        show(myTeamsController, sender: self)
+    }
+    
+    
+    @IBAction func seeAllFixtureStats(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
+        let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
+        myTeamsController.season_id = season_id
+        myTeamsController.tabatindex = 2
+        show(myTeamsController, sender: self)
+    }
+    
+    @IBAction func seeAllTeamStatsAction(_ sender: Any) {
+    }
 }

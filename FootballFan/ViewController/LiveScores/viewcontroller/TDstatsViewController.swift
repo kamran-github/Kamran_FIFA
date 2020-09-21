@@ -77,8 +77,8 @@ class TDstatsViewController: UIViewController {
     func teamapiCall(){
         if ClassReachability.isConnectedToNetwork() {
             //Changed Sept
-            let url = "\(baseurl)/Team/Season/\(468)/\(16030)"
-            //let url = "\(baseurl)/Team/Season/\(team_id)/\(season_id)"
+//            let url = "\(baseurl)/Team/Season/\(468)/\(16030)"
+            let url = "\(baseurl)/Team/Season/\(team_id)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
