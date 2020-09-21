@@ -168,6 +168,7 @@ class LiveScoreViewController: UIViewController, UICollectionViewDelegate, UICol
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let myTeamsController : LegaDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "legdetail") as! LegaDetailsViewController
         myTeamsController.season_id = sortedliveScoreArray[selectedJsonIndex].valueObject[section].season_id ?? 0
+
         myTeamsController.legname = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name ?? ConstantString.notAvailable
         myTeamsController.fixtureArray = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture
         show(myTeamsController, sender: self)
@@ -331,9 +332,9 @@ extension LiveScoreViewController {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = UIColor.init(hex: "EFEFEF")//UIColor.colorWithHexString(hexStr: "#0075d4")
         //let dic = arrscore[section]
-        header.textLabel?.frame.origin.x = 40
-        header.textLabel?.textColor = UIColor.black
-        header.textLabel?.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
+//        header.textLabel?.frame.origin.x = 40
+//        header.textLabel?.textColor = UIColor.black
+//        header.textLabel?.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
         if let viewWithTag = self.view.viewWithTag(kHeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
         }
@@ -357,9 +358,10 @@ extension LiveScoreViewController {
         imgligelogo.tag = kHeaderSectionTag + section
         imgligelogo.isUserInteractionEnabled = true
         header.addSubview(imgligelogo)
-        let messageLabel = UILabel(frame: CGRect(x: 0, y: headerFrame.height - 2, width: headerFrame.width, height: 1))
-        // messageLabel.text = self.sectionNames[section] as? String
-        messageLabel.backgroundColor = UIColor.black
+        let messageLabel = UILabel(frame: CGRect(x: 50, y: 2, width: 230, height: 30))
+        messageLabel.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
+        messageLabel.backgroundColor = UIColor.clear
+        messageLabel.textColor = UIColor.black
         header.addSubview(messageLabel)
         // make headers touchable
         header.tag = section

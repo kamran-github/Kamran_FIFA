@@ -88,27 +88,27 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     }
     func teamapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-            //Changed Sept
-            
-            let url = "\(baseurl)/Team/Season/\(468)/\(16030)"
+            let url = "http://ffapitest.ifootballfan.com:7001/Team/Season/Standing/468/16030"
+            //let url = "\(baseurl)/Team/Season/Standing/\(team_id)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
                     if let json = value as? [String: Any] {
-                        let status1: Bool = json["success"] as! Bool
+                        let status1: Bool = json["success"] as? Bool ?? false
                         if(status1){
-                            self.dicall = json["json"] as! NSDictionary
-                            print(self.dicall)
-                            self.Arrlige = self.dicall.value(forKey: "league") as! [AnyObject]
-                            self.Arrstanding = self.dicall.value(forKey: "standings") as! [AnyObject]
-                            self.storytableview?.reloadData()
-                            if(self.Arrlige.count > 0){
-                                let dict1 = self.Arrlige[0] as! NSDictionary
-                                self.Dropdownlabel?.text = dict1.value(forKey: "name") as? String
-                                let  homelogo = dict1.value(forKey: "logo_path") as! String
-                                let url = URL(string:homelogo)!
-                                self.Dropdownimg?.af.setImage(withURL: url)
-                                self.UIUpdate()
+                            if let dict = json["json"] as? NSDictionary {
+                                self.dicall = dict
+                                self.Arrlige = self.dicall.value(forKey: "league") as? [AnyObject] ?? []
+                                self.Arrstanding = self.dicall.value(forKey: "standings") as? [AnyObject] ?? []
+                                self.storytableview?.reloadData()
+                                if(self.Arrlige.count > 0){
+                                    let dict1 = self.Arrlige[0] as? NSDictionary
+                                    self.Dropdownlabel?.text = dict1?.value(forKey: "name") as? String
+                                    let  homelogo = dict1?.value(forKey: "logo_path") as? String
+                                    let url = URL(string:homelogo ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg")!
+                                    self.Dropdownimg?.af.setImage(withURL: url)
+                                    self.UIUpdate()
+                                }
                             }
                         }else{
                             self.childView?.isHidden = true
@@ -118,7 +118,6 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                     self.childView?.isHidden = true
                     break
                     // error handling
-                    
                 }
             }
         }
@@ -138,14 +137,7 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
         self.present(alert, animated: true, completion:nil)
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        //print(appDelegate().allContacts)
-        //print(appDelegate().allContacts.count)
-        
-        
         return 1
-        
-        
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if( tableView == storytableview){
@@ -156,15 +148,13 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        //let dic = appDelegate().arrStanding[section] as! NSDictionary
-        //let date = dic.value(forKey: "date")
         if( tableView == storytableview){
-            return "date" as? String
+            return "date" 
         }else{
             return "Match Events"
         }
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if( tableView == storytableview){
             let headerView:StandingHeader = storytableview!.dequeueReusableCell(withIdentifier: "StandingHeader") as! StandingHeader
@@ -202,9 +192,7 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
             let dic = Arrstanding[indexPath.row] as! NSDictionary
             cell.teamName?.text = dic.value(forKey: "team_name") as? String
             let  homelogo = dic.value(forKey: "logo_path") as! String
-            
             let url = URL(string:homelogo)!
-            
             cell.imgtagright?.af.setImage(withURL: url)
             cell.Sno?.text = "\(dic.value(forKey: "position") as! Int)"
             let total = dic.value(forKey: "total") as! NSDictionary
@@ -282,76 +270,91 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
             }
             else
             {
-                //print("object is not  null or nil")
-                statsdic = dicall.value(forKey: "stats") as! NSDictionary
-                if(statsdic.count>0){
-                    let win = statsdic.value(forKey: "win") as! NSDictionary
-                    Winlabel?.text = "\(win.value(forKey: "total") as! Int)"
-                    let draw = statsdic.value(forKey: "draw") as! NSDictionary
-                    Drawlabel?.text = "\(draw.value(forKey: "total") as! Int)"
-                    let lost = statsdic.value(forKey: "lost") as! NSDictionary
-                    Looseslabel?.text = "\(lost.value(forKey: "total") as! Int)"
-                    let dict2 = Arrlige[selecteddropdownindex] as! NSDictionary
-                    let fixture = dict2.value(forKey: "fixture") as! NSArray
-                    if(fixture.count>0){
-                        let dict = fixture[0] as! NSDictionary
-                        let currentRound = dict.value(forKey: "currentRound") as! NSDictionary
-                        lblmatchday?.text = "MatchDay \(currentRound.value(forKey: "name") as! Int)"
-                        if let localTeam = dict.value(forKey: "localTeam") {
-                            if let localTeamDetil = (localTeam as AnyObject).value(forKey: "data") {
-                                
-                                if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
-                                    let  homename = name as! String
-                                    let  homelogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
-                                    hometeam?.text = homename
-                                    let url = URL(string:homelogo)!
-                                    
+                if let dicStats = dicall.value(forKey: "stats") as? NSDictionary {
+                    statsdic = dicStats
+                    if(statsdic.count>0){
+                        let win = statsdic.value(forKey: "win") as? NSDictionary
+                        Winlabel?.text = "\(win?.value(forKey: "total") as? Int ?? 0)"
+                        let draw = statsdic.value(forKey: "draw") as? NSDictionary
+                        Drawlabel?.text = "\(draw?.value(forKey: "total") as? Int ?? 0)"
+                        let lost = statsdic.value(forKey: "lost") as! NSDictionary
+                        Looseslabel?.text = "\(lost.value(forKey: "total") as? Int ?? 0)"
+                        if let dic2 = Arrlige[selecteddropdownindex] as? NSDictionary {
+                            let dict2 = dic2
+                            if let fixtureArray = dict2.value(forKey: "fixture") as? NSArray {
+                                let fixture = fixtureArray
+                                if(fixture.count>0){
+                                    if let dict = fixture[0] as? NSDictionary {
+                                        let dict = dict
+                                        if let currentRound = dict.value(forKey: "currentRound") as? NSDictionary {
+                                            let currentRound = currentRound
+                                            lblmatchday?.text = "MatchDay \(currentRound.value(forKey: "name") as? Int ?? 0)"
+                                            if let localTeam = dict.value(forKey: "localTeam") {
+                                                if let localTeamDetil = (localTeam as AnyObject).value(forKey: "data") {
+                                                        let  homename = (localTeamDetil as AnyObject).value(forKey: "name") as? String
+                                                        let  homelogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as? String ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"
+                                                        hometeam?.text = homename
+                                                        let url = URL(string:homelogo)!
+                                                        imghometeam?.af.setImage(withURL: url)
+                                                    
+                                                }}
+                                            if let visitorTeam = dict.value(forKey: "visitorTeam") {
+                                                if let localTeamDetil = (visitorTeam as AnyObject).value(forKey: "data") {
+                                                    if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
+                                                        let visitorname = name as! String
+                                                        let visitorlogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
+                                                        visitteam?.text = visitorname
+                                                        let url1 = URL(string:visitorlogo)!
+                                                        imgvisitteam?.af.setImage(withURL: url1 )
+                                                    }}}
+                                            let calendar = Calendar(identifier: .gregorian)
+                                            let fixturetime:Int64 = dict.value(forKey: "fixtureTime") as! Int64
+                                            let startOfDate = calendar.startOfDay(for: Date())
+                                            let timeinterval1 = startOfDate.timeIntervalSince1970 * 1000
+                                            let time = Int64(timeinterval1.rounded())
+                                            if(fixturetime == time){
+                                                lblstatus?.isHidden = false
+                                                lblstatus?.text = "Today"
+                                            }else{
+                                                lblstatus?.isHidden = true
+                                            }
+                                            if let scoredic = dict.value(forKey: "scores") {
+                                                let homescore = (scoredic as AnyObject).value(forKey: "localteam_score") as! Int
+                                                let visitorscore = (scoredic as AnyObject).value(forKey: "visitorteam_score") as! Int
+                                                lbltime?.text = "\(homescore) : \(visitorscore)"
+                                            }
+                                            let avggoal = statsdic.value(forKey: "avg_goals_per_game_scored") as! NSDictionary
+                                            let goalprogress = avggoal.value(forKey: "total") as! Float
+                                            goalpro?.progress = goalprogress/100
+                                            lblgoalvalue?.text = "\(goalprogress)"
+                                            let avggoalcon = statsdic.value(forKey: "avg_goals_per_game_conceded") as! NSDictionary
+                                            let goalconprogress = (avggoalcon.value(forKey: "total") as! NSNumber).floatValue
+                                            lblgoalconvalue?.text = "\(goalconprogress)"
+                                            goalcon?.progress = goalconprogress/100
+                                            
+                                            let possessionvalue = Float(statsdic.value(forKey: "avg_ball_possession_percentage") as! String)
+                                            lblpossessionvalue?.text = "\(String(describing: possessionvalue!))"
+                                            possession?.progress = possessionvalue!/100
+                                        }
+                                    }
+                                } else {
+                                    lblmatchday?.text = "A"
+                                    hometeam?.text = ConstantString.notAvailable
+                                    let url = URL(string:"https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg")!
                                     imghometeam?.af.setImage(withURL: url)
+                                    visitteam?.text = ConstantString.notAvailable
+                                    imgvisitteam?.af.setImage(withURL: url )
+                                    lbltime?.text = "\(0) : \(0)"
                                 }
-                            }}
-                        if let visitorTeam = dict.value(forKey: "visitorTeam") {
-                            if let localTeamDetil = (visitorTeam as AnyObject).value(forKey: "data") {
+                            } else {
                                 
-                                if let name = (localTeamDetil as AnyObject).value(forKey: "name"){
-                                    let visitorname = name as! String
-                                    let visitorlogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
-                                    visitteam?.text = visitorname
-                                    let url1 = URL(string:visitorlogo)!
-                                    imgvisitteam?.af.setImage(withURL: url1 )
-                                }}}
-                        let calendar = Calendar(identifier: .gregorian)
-                        let fixturetime:Int64 = dict.value(forKey: "fixtureTime") as! Int64
-                        let startOfDate = calendar.startOfDay(for: Date())
-                        let timeinterval1 = startOfDate.timeIntervalSince1970 * 1000
-                        let time = Int64(timeinterval1.rounded())
-                        if(fixturetime == time){
-                            lblstatus?.isHidden = false
-                            lblstatus?.text = "Today"
-                        }else{
-                            lblstatus?.isHidden = true
+                            }
                         }
-                        if let scoredic = dict.value(forKey: "scores") {
-                            let homescore = (scoredic as AnyObject).value(forKey: "localteam_score") as! Int
-                            let visitorscore = (scoredic as AnyObject).value(forKey: "visitorteam_score") as! Int
-                            lbltime?.text = "\(homescore) : \(visitorscore)"
-                        }
-                        let avggoal = statsdic.value(forKey: "avg_goals_per_game_scored") as! NSDictionary
-                        let goalprogress = avggoal.value(forKey: "total") as! Float
-                        goalpro?.progress = goalprogress/100
-                        lblgoalvalue?.text = "\(goalprogress)"
-                        let avggoalcon = statsdic.value(forKey: "avg_goals_per_game_conceded") as! NSDictionary
-                        let goalconprogress = (avggoalcon.value(forKey: "total") as! NSNumber).floatValue
-                        lblgoalconvalue?.text = "\(goalconprogress)"
-                        goalcon?.progress = goalconprogress/100
-                        
-                        let possessionvalue = Float(statsdic.value(forKey: "avg_ball_possession_percentage") as! String)
-                        lblpossessionvalue?.text = "\(String(describing: possessionvalue!))"
-                        possession?.progress = possessionvalue!/100
-                        
+                    }else{
+                        childView?.isHidden = true
                     }
-                }else{
-                    childView?.isHidden = true
                 }
+                
             }
             
         }else{

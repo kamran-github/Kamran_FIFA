@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 class FixtureStateViewController: UIViewController {
-    var season_id: AnyObject = 0 as AnyObject
+    var season_id = 0
     var fixtureStateData : Fixture?
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
@@ -128,7 +128,6 @@ class FixtureStateViewController: UIViewController {
     @IBOutlet weak var lbltime: UILabel?
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         uidataset()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +139,7 @@ class FixtureStateViewController: UIViewController {
         let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
         TeamDetailViewController
         myTeamsController.Teamname = dic.value(forKey: "hometeamname") as? String ?? ""
-        myTeamsController.season_id = season_id as! Int
+        myTeamsController.season_id = season_id
         //myTeamsController.legname = dic.value(forKey: "legname") as! String
         myTeamsController.team_id = homeId as AnyObject
         show(myTeamsController, sender: self)
@@ -150,7 +149,7 @@ class FixtureStateViewController: UIViewController {
         let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
         TeamDetailViewController
         myTeamsController.Teamname = dic.value(forKey: "visitorteamname") as? String ?? ""
-        myTeamsController.season_id = season_id as! Int
+        myTeamsController.season_id = season_id
         //myTeamsController.legname = dic.value(forKey: "legname") as! String
         myTeamsController.team_id = visitorId as AnyObject
         show(myTeamsController, sender: self)

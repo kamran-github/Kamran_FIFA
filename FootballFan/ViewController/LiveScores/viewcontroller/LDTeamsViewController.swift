@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
- 
+    var serialNum = 1
     var season_id = 0
     var apd = UIApplication.shared.delegate as! AppDelegate
     var selectedsegmentindex:Int = 0
@@ -109,7 +109,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
+                    cell.Sno?.text = "\(serialNum)"
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? "ConstantString.notAvailable")"
                         cell.Pts?.text = "\(total.value(forKey: "points") as? Int ?? 0)"
@@ -130,7 +130,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
+                    cell.Sno?.text = "\(serialNum)"
                     
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
@@ -154,7 +154,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                     if let url = URL(string:homelogo) {
                         cell.imgtagright?.af.setImage(withURL: url)
                     }
-                    cell.Sno?.text = "\(dict.value(forKey: "position") as? Int ?? 0)"
+                    cell.Sno?.text = "\(serialNum)"
                     
                     if let total = dict.value(forKey: "total") as? NSDictionary {
                         cell.GD?.text = "\(total.value(forKey: "goal_difference") as? String ?? ConstantString.notAvailable)"
@@ -174,7 +174,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 }
             }
         }
-        
+        serialNum = serialNum+1 
         return cell
         
     }

@@ -141,11 +141,13 @@ extension FixturescoreViewController {
         }
         FixtureLineUp.dic = dict
         FixtureLineUp.fixtureLineupData = fixtureData
+        FixtureLineUp.season_id = season_id
         childVCs.append(FixtureLineUp)
         let FixtureState : FixtureStateViewController = storyBoard.instantiateViewController(withIdentifier: "FixtureState") as! FixtureStateViewController
         // FixtureLineUp.Fixture_id = dic.value(forKey: "fixture_id") as AnyObject
         FixtureState.dic = dict
         FixtureState.fixtureStateData = fixtureData
+        FixtureState.season_id = season_id
         childVCs.append(FixtureState)
         ///######## 3. Configuring barStyle
         var style = AHCategoryNavBarStyle()

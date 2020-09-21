@@ -11962,7 +11962,7 @@
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0x-nq-I4O">
                                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
-                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>

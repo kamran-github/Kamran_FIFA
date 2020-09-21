@@ -63,9 +63,8 @@ extension PlayerViewController {
         let items = [featureItem, chartItem, radioItem, liveItem, featureItem, chartItem, radioItem, liveItem, searchItem]*/
         var featureItem = AHCategoryItem()
         featureItem.title = "Bio"
-         var featureItem1 = AHCategoryItem()
-               featureItem1.title = "math"
-        let items = [featureItem,featureItem1]
+        let items = [featureItem
+        ]
         ///######## 2. Adding VCs
         let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
         let mybanter : BioViewController = storyBoard.instantiateViewController(withIdentifier: "bioplayer") as! BioViewController

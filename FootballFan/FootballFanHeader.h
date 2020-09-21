@@ -58,7 +58,7 @@
 #define PaypalWithaccess_token @"https://api.sandbox.paypal.com/v1/oauth2/token/userinfo?schema=openid"
 
 //#define baseurl @"https://ffapitest.ifootballfan.com:8443/FFJavaAPI/FFAPI"
-#define baseurl @"http://apitest.ifootballfan.com:7001"
+#define baseurl @"http://ffapitest.ifootballfan.com:7001"
 //#define baseurl @"http://ffapidev.ifootballfan.com:7001"
  
 #define Signupmail @"http://api.footballfan.mobi/ffapi/ffapi.php?"
