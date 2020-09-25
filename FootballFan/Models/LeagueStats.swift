@@ -428,7 +428,7 @@ struct LeagueStatsJson : Mappable {
 struct LeagueLeagueData : Mappable {
     var number_of_redcards : Int?
     var goal_line : Goal_line?
-    var team_with_most_conceded_goals_number : String?
+    var team_with_most_conceded_goals_number : Int?
     var goalkeeper_most_cleansheets_id : Int?
     var defeat_percentage : Defeat_percentage?
     var number_of_matches_played : Int?
@@ -438,24 +438,24 @@ struct LeagueLeagueData : Mappable {
     var goals_conceded : Goals_conceded?
     var avg_homegoals_per_match : String?
     var win_percentage : Win_percentage?
-    var team_with_most_goals_per_match_number : String?
+    var team_with_most_goals_per_match_number : Int?
     var avg_goals_per_match : Double?
     var number_of_goals : Int?
     var avg_redcards_per_match : Double?
-    var team_most_corners_count : String?
+    var team_most_corners_count : Int?
     var avg_player_rating : String?
     var updated_at : Updated_at?
     var team_with_most_conceded_goals_id : Int?
     var id : Int?
     var goals_scored_minutes : Goals_scored_minutes?
-    var avg_awaygoals_per_match : String?
+    var avg_awaygoals_per_match : Int?
     var goals_scored : Goals_scored?
     var team_most_corners_id : String?
-    var season_topscorer_number : String?
+    var season_topscorer_number : Int?
     var season_assist_topscorer_id : Int?
     var avg_corners_per_match : String?
     var season_id : Int?
-    var season_assist_topscorer_number : String?
+    var season_assist_topscorer_number : Int?
     var team_most_cleansheets_number : Int?
     var draw_percentage : String?
     var goalkeeper_most_cleansheets_number : Int?
@@ -467,7 +467,7 @@ struct LeagueLeagueData : Mappable {
     var team_with_most_goals_id : Int?
     var team_with_most_goals_per_match_id : Int?
     var matches_both_teams_scored : Int?
-    var team_with_most_goals_number : String?
+    var team_with_most_goals_number : Int?
     var league_id : Int?
     var goal_scored_every_minutes : Int?
     var btts : Double?

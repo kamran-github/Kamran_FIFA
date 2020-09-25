@@ -389,5 +389,12 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     @IBAction func seeAllTeamStatsAction(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "LiveScoreStoryboard", bundle: nil)
+        let myTeamsController : TeamDetailViewController = storyBoard.instantiateViewController(withIdentifier: "teamdetail") as!
+        TeamDetailViewController
+        myTeamsController.season_id = season_id
+        myTeamsController.team_id = team_id as AnyObject
+        myTeamsController.selectedIndex = 1
+        show(myTeamsController, sender: self)
     }
 }

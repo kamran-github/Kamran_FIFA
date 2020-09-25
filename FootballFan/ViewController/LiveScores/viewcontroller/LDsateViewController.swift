@@ -216,7 +216,7 @@ class LDsateViewController: UIViewController {
             playerimage1?.layer.borderWidth = 1
             playerimage1?.clipsToBounds = true
             playerlbl1.text = leagueJson?.season_TopScorer?.fullname ?? ConstantString.notAvailable
-            plyaernumLbl1.text = leagueJson?.season_TopScorer?.position ?? ConstantString.notAvailable
+            plyaernumLbl1.text = "\(leagueJson?.stats?.data?.season_topscorer_number ?? 0)"
             playerCountryLbl1.text = leagueJson?.season_TopScorer?.nationality ?? ConstantString.notAvailable
             
            let playerURL2 = URL(string:String(leagueJson?.season_Assist_TopScorer?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
@@ -228,7 +228,7 @@ class LDsateViewController: UIViewController {
             playerimage2?.layer.borderWidth = 1
             playerimage2?.clipsToBounds = true
             playerlbl2.text = leagueJson?.season_Assist_TopScorer?.fullname ?? ConstantString.notAvailable
-            plyaernumLbl2.text = leagueJson?.season_Assist_TopScorer?.position ?? ConstantString.notAvailable
+            plyaernumLbl2.text = "\(leagueJson?.stats?.data?.season_assist_topscorer_number ?? 0)"
             playerCountryLbl2.text = leagueJson?.season_Assist_TopScorer?.nationality ?? ConstantString.notAvailable
             
             let playerURL3 = URL(string:String(leagueJson?.goalkeeper_Most_CleanSheets?.image_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
@@ -239,8 +239,8 @@ class LDsateViewController: UIViewController {
             playerimage3?.layer.borderColor = UIColor.init(hex: "9a9a9a").cgColor
             playerimage3?.layer.borderWidth = 1
             playerimage3?.clipsToBounds = true
-            playerlbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.fullname ?? ConstantString.notAvailable
-            plyaernumLbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.position ?? ConstantString.notAvailable
+            playerlbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.fullname ?? "ConstantString.notAvailable"
+            plyaernumLbl3.text = "\(leagueJson?.stats?.data?.goalkeeper_most_cleansheets_number ?? 0)"
             playerCountryLbl3.text = leagueJson?.goalkeeper_Most_CleanSheets?.nationality ?? ConstantString.notAvailable
             
             
@@ -253,8 +253,8 @@ class LDsateViewController: UIViewController {
             teamimage1?.layer.borderWidth = 1
             teamimage1?.clipsToBounds = true
             teamlbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.name ?? ConstantString.notAvailable
-            teamnumLbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.short_code ?? ConstantString.notAvailable
-            teamCountryLbl1.text = leagueJson?.team_With_Most_Clean_Sheet?.name ?? ConstantString.notAvailable
+            teamnumLbl1.text = "\(leagueJson?.stats?.data?.team_most_cleansheets_number ?? 0)"
+            teamCountryLbl1.text = ""
             
             let imageURL2 = URL(string:String(leagueJson?.team_With_Most_Corner?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
             if let logourl2 = imageURL2 {
@@ -265,8 +265,8 @@ class LDsateViewController: UIViewController {
             teamimage2?.layer.borderWidth = 1
             teamimage2?.clipsToBounds = true
             teamlbl2.text = leagueJson?.team_With_Most_Corner?.name ?? ConstantString.notAvailable
-            teamnumLbl2.text = leagueJson?.team_With_Most_Corner?.short_code ?? ConstantString.notAvailable
-            teamCountryLbl2.text = leagueJson?.team_With_Most_Corner?.name ?? ConstantString.notAvailable
+            teamnumLbl2.text = "\(leagueJson?.stats?.data?.team_most_corners_count ?? 0)"
+            teamCountryLbl2.text = ""
             
             let imageURL3 = URL(string:String(leagueJson?.team_With_Most_Goals?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
             if let logourl3 = imageURL3 {
@@ -277,8 +277,8 @@ class LDsateViewController: UIViewController {
             teamimage3?.layer.borderWidth = 1
             teamimage3?.clipsToBounds = true
             teamlbl3.text = leagueJson?.team_With_Most_Goals?.name ?? ConstantString.notAvailable
-            teamnumLbl3.text = leagueJson?.team_With_Most_Goals?.short_code ?? ConstantString.notAvailable
-            teamCountryLbl3.text = leagueJson?.team_With_Most_Goals?.name ?? ConstantString.notAvailable
+            teamnumLbl3.text = "\(leagueJson?.stats?.data?.team_with_most_goals_number ?? 0)"
+            teamCountryLbl3.text = ""
             
             let imageURL4 = URL(string:String(leagueJson?.team_With_Most_Conceded?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
             if let logourl4 = imageURL4 {
@@ -289,8 +289,8 @@ class LDsateViewController: UIViewController {
             teamimage4?.layer.borderWidth = 1
             teamimage4?.clipsToBounds = true
             teamlbl4.text = leagueJson?.team_With_Most_Conceded?.name ?? ConstantString.notAvailable
-            teamnumLbl4.text = leagueJson?.team_With_Most_Conceded?.short_code ?? ConstantString.notAvailable
-            teamCountryLbl4.text = leagueJson?.team_With_Most_Conceded?.name ?? ConstantString.notAvailable
+            teamnumLbl4.text = "\(leagueJson?.stats?.data?.team_with_most_conceded_goals_number ?? 0)"
+            teamCountryLbl4.text = ""
             
             let imageURL5 = URL(string:String(leagueJson?.team_With_Most_Goals_Per_Match?.logo_path ?? "https://img.favpng.com/11/10/15/logo-football-photography-png-favpng-PHcuh7RUxh66QMFf1CRjLjfv5.jpg"))
             if let logourl5 = imageURL5 {
@@ -301,8 +301,8 @@ class LDsateViewController: UIViewController {
             teamimage5?.layer.borderWidth = 1
             teamimage5?.clipsToBounds = true
             teamlbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.name ?? ConstantString.notAvailable
-            teamnumLbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.short_code ?? ConstantString.notAvailable
-            teamCountryLbl5.text = leagueJson?.team_With_Most_Goals_Per_Match?.name ?? ConstantString.notAvailable
+            teamnumLbl5.text = "\(leagueJson?.stats?.data?.team_with_most_goals_per_match_number ?? 0)"
+            teamCountryLbl5.text = ""
         }
         else{
             childview?.isHidden = true

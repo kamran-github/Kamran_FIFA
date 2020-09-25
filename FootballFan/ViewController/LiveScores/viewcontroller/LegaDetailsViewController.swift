@@ -179,7 +179,8 @@ extension LegaDetailsViewController {
     //MARK:- Webservices call to get live score data
     func getLeagueDataFromAPI(){
         if ClassReachability.isConnectedToNetwork() {
-            let url = baseurl+"/Season/"+String(season_id)
+            
+            let url = "http://ffapitest.ifootballfan.com:7001/Season/17420"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):

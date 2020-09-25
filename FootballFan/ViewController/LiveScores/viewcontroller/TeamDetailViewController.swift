@@ -17,6 +17,7 @@ class TeamDetailViewController: UIViewController {
     var season_id = 0
     var team_id: AnyObject  = 0 as AnyObject
     var Teamname:String = ""
+    var selectedIndex = 0
     // var dic: NSDictionary = NSDictionary()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +122,7 @@ extension TeamDetailViewController {
         categoryView.interControllerSpacing = 0
         parentview?.addSubview(categoryView)
         self.categoryView = categoryView
+        categoryView.select(at: selectedIndex)
         // parentview = categoryView
         //refreshBadgeCount()
     }
