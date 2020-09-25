@@ -14,8 +14,6 @@
 		180D1EA5231F9B900044206E /* purchasedHistoryViewContriller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D1EA4231F9B900044206E /* purchasedHistoryViewContriller.swift */; };
 		180D1EA7231FB8EF0044206E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D1EA6231FB8EF0044206E /* HomeViewController.swift */; };
 		1814955223E2B324007E30BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1814955123E2B324007E30BC /* GoogleService-Info.plist */; };
-		181E3A7024B454C0007DAC43 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E3A6F24B454C0007DAC43 /* NotificationService.swift */; };
-		181E3A7424B454C0007DAC43 /* FootballFanPush.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 181E3A6D24B454C0007DAC43 /* FootballFanPush.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1823B4C3236C39610026670E /* Merchant_categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823B4C2236C39610026670E /* Merchant_categories.swift */; };
 		182513D623192E3400D98A7E /* UpcomingTriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182513D523192E3400D98A7E /* UpcomingTriviaViewController.swift */; };
 		182653A2233B54540003E108 /* FancoinAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182653A1233B54540003E108 /* FancoinAlertViewController.swift */; };
@@ -514,18 +512,10 @@
 		2FFF27D5251201EC00286E8B /* RoundSeasonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF27D4251201EC00286E8B /* RoundSeasonModel.swift */; };
 		5253CD890DD4AA6D23520026 /* Pods_FootballFanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A35653E9CE4FC09D254D43DD /* Pods_FootballFanTests.framework */; };
 		5E282FDA843F8B6BC7F99FA9 /* Pods_FootballFan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E6498E5A1EEEF0F220E3F74 /* Pods_FootballFan.framework */; };
-		6F260EBD19EAC82EC580AD76 /* Pods_FootballFanPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B556603A43EA7326C61854B /* Pods_FootballFanPush.framework */; };
 		DE3BA046609D460038994900 /* Pods_FootballFan_FootballFanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E106CBF2126AB3DB5592428 /* Pods_FootballFan_FootballFanUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		181E3A7224B454C0007DAC43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 18AD8A1123069C8500BDD256 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 181E3A6C24B454C0007DAC43;
-			remoteInfo = FootballFanPush;
-		};
 		18AD8A2E23069C8800BDD256 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18AD8A1123069C8500BDD256 /* Project object */;
@@ -549,7 +539,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				181E3A7424B454C0007DAC43 /* FootballFanPush.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -566,7 +555,6 @@
 		180D1EA4231F9B900044206E /* purchasedHistoryViewContriller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchasedHistoryViewContriller.swift; sourceTree = "<group>"; };
 		180D1EA6231FB8EF0044206E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1814955123E2B324007E30BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		181E3A6D24B454C0007DAC43 /* FootballFanPush.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FootballFanPush.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		181E3A6F24B454C0007DAC43 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		181E3A7124B454C0007DAC43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1823B4C2236C39610026670E /* Merchant_categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant_categories.swift; sourceTree = "<group>"; };
@@ -1088,14 +1076,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		181E3A6A24B454C0007DAC43 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6F260EBD19EAC82EC580AD76 /* Pods_FootballFanPush.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18AD8A1623069C8500BDD256 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1425,7 +1405,6 @@
 				18AD8A1923069C8500BDD256 /* FootballFan.app */,
 				18AD8A2D23069C8800BDD256 /* FootballFanTests.xctest */,
 				18AD8A3823069C8800BDD256 /* FootballFanUITests.xctest */,
-				181E3A6D24B454C0007DAC43 /* FootballFanPush.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1841,24 +1820,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		181E3A6C24B454C0007DAC43 /* FootballFanPush */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 181E3A7524B454C0007DAC43 /* Build configuration list for PBXNativeTarget "FootballFanPush" */;
-			buildPhases = (
-				3EF08DB7F014CE2162A7E440 /* [CP] Check Pods Manifest.lock */,
-				181E3A6924B454C0007DAC43 /* Sources */,
-				181E3A6A24B454C0007DAC43 /* Frameworks */,
-				181E3A6B24B454C0007DAC43 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = FootballFanPush;
-			productName = FootballFanPush;
-			productReference = 181E3A6D24B454C0007DAC43 /* FootballFanPush.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		18AD8A1823069C8500BDD256 /* FootballFan */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18AD8A4123069C8800BDD256 /* Build configuration list for PBXNativeTarget "FootballFan" */;
@@ -1874,7 +1835,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				181E3A7324B454C0007DAC43 /* PBXTargetDependency */,
 			);
 			name = FootballFan;
 			productName = FootballFan;
@@ -1930,9 +1890,6 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Apple;
 				TargetAttributes = {
-					181E3A6C24B454C0007DAC43 = {
-						CreatedOnToolsVersion = 11.5;
-					};
 					18AD8A1823069C8500BDD256 = {
 						CreatedOnToolsVersion = 10.3;
 						SystemCapabilities = {
@@ -1976,19 +1933,11 @@
 				18AD8A1823069C8500BDD256 /* FootballFan */,
 				18AD8A2C23069C8800BDD256 /* FootballFanTests */,
 				18AD8A3723069C8800BDD256 /* FootballFanUITests */,
-				181E3A6C24B454C0007DAC43 /* FootballFanPush */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		181E3A6B24B454C0007DAC43 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18AD8A1723069C8500BDD256 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2314,28 +2263,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FootballFan/Pods-FootballFan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3EF08DB7F014CE2162A7E440 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FootballFanPush-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B70EA6E08809A3A19015A96B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2400,14 +2327,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		181E3A6924B454C0007DAC43 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				181E3A7024B454C0007DAC43 /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		18AD8A1523069C8500BDD256 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2686,11 +2605,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		181E3A7324B454C0007DAC43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 181E3A6C24B454C0007DAC43 /* FootballFanPush */;
-			targetProxy = 181E3A7224B454C0007DAC43 /* PBXContainerItemProxy */;
-		};
 		18AD8A2F23069C8800BDD256 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18AD8A1823069C8500BDD256 /* FootballFan */;
@@ -2715,58 +2629,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		181E3A7624B454C0007DAC43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 651F66A8C3FCEA0B7C7004AE /* Pods-FootballFanPush.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = FootballFanPush/FootballFanPush.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.52;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
-				INFOPLIST_FILE = FootballFanPush/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.25;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tridecimal.ltd.footballfan.test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		181E3A7724B454C0007DAC43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E270A74EE97ADAC7A05E69D /* Pods-FootballFanPush.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = FootballFanPush/FootballFanPush.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.52;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
-				INFOPLIST_FILE = FootballFanPush/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.25;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tridecimal.ltd.footballfan.test;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		18AD8A3F23069C8800BDD256 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2818,7 +2680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2873,7 +2735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2890,13 +2752,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.1.52;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 28A35W7MWV;
 				INFOPLIST_FILE = FootballFan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2904,7 +2766,7 @@
 				MARKETING_VERSION = 1.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tridecimal.ltd.footballfan.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Football fan test app- provisioning profile";
 				SWIFT_OBJC_BRIDGING_HEADER = FootballFan/FootballFanHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2918,13 +2780,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.1.52;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 28A35W7MWV;
 				INFOPLIST_FILE = FootballFan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2932,7 +2794,7 @@
 				MARKETING_VERSION = 1.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tridecimal.ltd.footballfan.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Football fan test app- provisioning profile";
 				SWIFT_OBJC_BRIDGING_HEADER = FootballFan/FootballFanHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2945,9 +2807,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = TSZRS69TQ4;
 				INFOPLIST_FILE = FootballFanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2956,6 +2819,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com..FootballFanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FootballFan.app/FootballFan";
@@ -2968,9 +2833,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = TSZRS69TQ4;
 				INFOPLIST_FILE = FootballFanTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2979,6 +2845,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com..FootballFanTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FootballFan.app/FootballFan";
@@ -2990,9 +2858,10 @@
 			baseConfigurationReference = 80E83D296677311019B12CC3 /* Pods-FootballFan-FootballFanUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FootballFanUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3001,6 +2870,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com..FootballFanUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FootballFan;
@@ -3012,9 +2883,10 @@
 			baseConfigurationReference = 9CF23ADD4A3C1E1787359C6B /* Pods-FootballFan-FootballFanUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development: FF-iOS Developer-2 (8L6588JLTU)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 28A35W7MWV;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FootballFanUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3023,6 +2895,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com..FootballFanUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FootballFan;
@@ -3032,15 +2906,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		181E3A7524B454C0007DAC43 /* Build configuration list for PBXNativeTarget "FootballFanPush" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				181E3A7624B454C0007DAC43 /* Debug */,
-				181E3A7724B454C0007DAC43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		18AD8A1423069C8500BDD256 /* Build configuration list for PBXProject "FootballFan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
