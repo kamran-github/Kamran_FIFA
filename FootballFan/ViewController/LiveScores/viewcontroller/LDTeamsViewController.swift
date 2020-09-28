@@ -15,10 +15,11 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
     var selectedsegmentindex:Int = 0
     var arrstanding: [AnyObject] = []
     var serialArray = [[Int]]()
-   
+    
     @IBOutlet weak var storytableview: UITableView?
     @IBOutlet weak var segments: UISegmentedControl?
-  
+    @IBOutlet var topHeaderView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         smatchdayapiCall()
@@ -87,10 +88,6 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
         let result = dic.value(forKey: "result") as! String
         let arr = dic.value(forKey: result  ) as! NSArray
         return arr.count
-        
-        
-        
-        
         
     }
     /*  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -174,7 +171,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                 }
             }
         }
-       
+        
         return cell
         
     }
@@ -197,7 +194,7 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
     }
     func smatchdayapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-           var serialNum = 1
+            var serialNum = 1
             let url = "\(baseurl)/Standing/Season/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
@@ -221,6 +218,11 @@ class LDTeamsViewController: UIViewController,UITableViewDataSource,UITableViewD
                         }
                         else{
                             
+                        }
+                        if self.arrstanding.count > 0 {
+                            self.topHeaderView.isHidden = false
+                        } else {
+                            self.topHeaderView.isHidden = true
                         }
                     }
                 case .failure(let error):

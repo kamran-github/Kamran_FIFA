@@ -718,3 +718,12 @@ struct Defeat_percentage : Mappable {
     }
 
 }
+
+extension Double {
+   func cleanValue() -> String {
+       let intValue = Int(self)
+       if self == 0 {return "0"}
+       if self / Double (intValue) == 1 { return "\(intValue)" }
+       return "\(self)"
+   }
+}

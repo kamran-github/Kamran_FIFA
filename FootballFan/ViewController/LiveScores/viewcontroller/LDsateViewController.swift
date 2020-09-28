@@ -141,13 +141,15 @@ class LDsateViewController: UIViewController {
             goals_concededAway?.text = String(leagueJson?.stats?.data?.goals_conceded?.away ?? 0.0)
             goals_concededHome?.text = String(leagueJson?.stats?.data?.goals_conceded?.home ?? 0.0)
             
-            winpercentageAll?.text = String(leagueJson?.stats?.data?.win_percentage?.all ?? 0.0)+"%"
-            winpercentageAway?.text = String(leagueJson?.stats?.data?.win_percentage?.away ?? 0.0)+"%"
-            winpercentageHome?.text = String(leagueJson?.stats?.data?.win_percentage?.home ?? 0.0)+"%"
+            winpercentageAll?.text = String(Int(leagueJson?.stats?.data?.win_percentage?.all ?? 0))+"%"
+            winpercentageAway?.text = String(Int(leagueJson?.stats?.data?.win_percentage?.away ?? 0))+"%"
+            winpercentageHome?.text = String(Int(leagueJson?.stats?.data?.win_percentage?.home ?? 0))+"%"
             
-            defeatpercentageAll?.text = String(leagueJson?.stats?.data?.defeat_percentage?.all ?? 0.0)+"%"
-            defeatpercentageAway?.text = String(leagueJson?.stats?.data?.defeat_percentage?.away ?? 0.0)+"%"
-            defeatpercentageHome?.text = String(leagueJson?.stats?.data?.defeat_percentage?.home ?? 0.0)+"%"
+            defeatpercentageAll?.text = String(Int(leagueJson?.stats?.data?.defeat_percentage?.all ?? 0))+"%"
+            defeatpercentageAway?.text = String(Int(leagueJson?.stats?.data?.defeat_percentage?.away ?? 0))+"%"
+            defeatpercentageHome?.text = String(Int(leagueJson?.stats?.data?.defeat_percentage?.home ?? 0))+"%"
+            
+            print(String(Int(leagueJson?.stats?.data?.defeat_percentage?.home ?? 0))+"%")
             
             number_of_yellowcards?.text = String(leagueJson?.stats?.data?.number_of_yellowcards ?? 0) //"\(data.value(forKey: "number_of_yellowcards") as AnyObject)"
             number_of_yellowredcards?.text = String(leagueJson?.stats?.data?.number_of_yellowredcards ?? 0) //"\(data.value(forKey: "number_of_yellowredcards") as AnyObject)"

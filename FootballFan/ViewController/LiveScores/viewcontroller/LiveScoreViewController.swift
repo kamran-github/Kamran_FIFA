@@ -80,7 +80,7 @@ class LiveScoreViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewWillAppear(animated)
         self.parent?.navigationItem.rightBarButtonItems = nil
         self.parent?.navigationItem.leftBarButtonItems = nil
-        self.parent?.title = "Games"
+        self.parent?.title = "Matches"
         let button2 = UIBarButtonItem(image: UIImage(named: "calender"), style: .plain, target: self, action: #selector(self.Showcalender(sender:)))
         let rightSearchBarButtonItem1:UIBarButtonItem = button2
         parent?.navigationItem.setRightBarButtonItems([rightSearchBarButtonItem1], animated: true)
@@ -286,7 +286,7 @@ extension LiveScoreViewController {
                 return sortedliveScoreArray[selectedJsonIndex].valueObject.count
             } else {
                 let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-                messageLabel.text = "No information found\non this date"
+                messageLabel.text = "No matches available"
                 messageLabel.numberOfLines = 0;
                 messageLabel.textAlignment = .center;
                 messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
@@ -296,7 +296,7 @@ extension LiveScoreViewController {
             return 0
         } else {
             let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-            messageLabel.text = "Retrieving data.\nPlease wait."
+            messageLabel.text = "Please wait while loading…"
             messageLabel.numberOfLines = 0;
             messageLabel.textAlignment = .center;
             messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
@@ -328,24 +328,21 @@ extension LiveScoreViewController {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        //recast your view as a UITableViewHeaderFooterView
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor.init(hex: "EFEFEF")//UIColor.colorWithHexString(hexStr: "#0075d4")
-        //let dic = arrscore[section]
-//        header.textLabel?.frame.origin.x = 40
-//        header.textLabel?.textColor = UIColor.black
-//        header.textLabel?.text = sortedliveScoreArray[selectedJsonIndex].valueObject[section].name
+        header.contentView.backgroundColor = UIColor.init(hex: "EFEFEF")//UIColor.init(hex: "EFEFEF")
         if let viewWithTag = self.view.viewWithTag(kHeaderSectionTag + section) {
             viewWithTag.removeFromSuperview()
         }
         let headerFrame = self.view.frame.size
         let standinglogo = UIImageView(frame: CGRect(x: headerFrame.width - 85, y: 13, width: 20, height: 20));
         standinglogo.image = UIImage(named: "standing")
+        standinglogo.backgroundColor = UIColor.init(hex: "EFEFEF")
         standinglogo.tag =  section
         standinglogo.isUserInteractionEnabled = true
         header.addSubview(standinglogo)
-        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 35, y: 13, width: 20, height: 15));
+        let theImageView = UIImageView(frame: CGRect(x: headerFrame.width - 35, y: 13, width: 25, height: 15));
         theImageView.image = UIImage(named: "dwonarrow")
+        theImageView.backgroundColor = UIColor.init(hex: "EFEFEF")
         theImageView.tag = kHeaderSectionTag + section
         theImageView.isUserInteractionEnabled = true
         header.addSubview(theImageView)
@@ -355,6 +352,7 @@ extension LiveScoreViewController {
         if let logourl = url {
             imgligelogo.af.setImage(withURL: logourl)
         }
+        imgligelogo.backgroundColor =  UIColor.init(hex: "EFEFEF")
         imgligelogo.tag = kHeaderSectionTag + section
         imgligelogo.isUserInteractionEnabled = true
         header.addSubview(imgligelogo)
@@ -487,27 +485,28 @@ extension LiveScoreViewController {
     }
     
     func tableViewCollapeSection(_ section: Int, imageView: UIImageView) {
-        let sectionData = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture! as NSArray
-        self.expandedSectionHeaderNumber = -1;
-        if (sectionData.count == 0) {
-            return;
-        } else {
-            UIView.animate(withDuration: 0.4, animations: {
-                imageView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(Double.pi)) / 180.0)
-            })
-            var indexesPath = [IndexPath]()
-            for i in 0..<sectionData.count {
-                let index = IndexPath(row: i, section: section)
-                indexesPath.append(index)
+        if let sectionData = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture {
+            self.expandedSectionHeaderNumber = -1;
+            if (sectionData.count == 0) {
+                return;
+            } else {
+                UIView.animate(withDuration: 0.4, animations: {
+                    imageView.transform = CGAffineTransform(rotationAngle: (0.0 * CGFloat(Double.pi)) / 180.0)
+                })
+                var indexesPath = [IndexPath]()
+                for i in 0..<sectionData.count {
+                    let index = IndexPath(row: i, section: section)
+                    indexesPath.append(index)
+                }
+                self.tableView!.beginUpdates()
+                self.tableView!.deleteRows(at: indexesPath, with: UITableView.RowAnimation.fade)
+                self.tableView!.endUpdates()
             }
-            self.tableView!.beginUpdates()
-            self.tableView!.deleteRows(at: indexesPath, with: UITableView.RowAnimation.fade)
-            self.tableView!.endUpdates()
         }
     }
     
     func tableViewExpandSection(_ section: Int, imageView: UIImageView) {
-        let sectionData = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture! as NSArray
+        if let sectionData = sortedliveScoreArray[selectedJsonIndex].valueObject[section].fixture {
         if (sectionData.count == 0) {
             self.expandedSectionHeaderNumber = -1;
             return;
@@ -524,6 +523,7 @@ extension LiveScoreViewController {
             self.tableView!.beginUpdates()
             self.tableView!.insertRows(at: indexesPath, with: UITableView.RowAnimation.fade)
             self.tableView!.endUpdates()
+            }
         }
     }
 }

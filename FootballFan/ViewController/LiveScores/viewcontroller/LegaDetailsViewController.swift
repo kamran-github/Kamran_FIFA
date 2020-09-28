@@ -75,8 +75,8 @@ extension LegaDetailsViewController {
         ///######## 3. Configuring barStyle
         var style = AHCategoryNavBarStyle()
         style.height = 37.0
-        style.fontSize = 18.0
-        style.selectedFontSize = 20.0
+        style.fontSize = 16.0
+        style.selectedFontSize = 16.0
         style.interItemSpace = 5.0
         style.itemPadding = 8.0
         style.isScrollable = false
@@ -84,8 +84,8 @@ extension LegaDetailsViewController {
         style.isEmbeddedToView = true
         style.showBottomSeparator = false
         style.showIndicator = true
-        style.normalColor = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
-        style.selectedColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).withAlphaComponent(0.7)
+        style.normalColor = UIColor.black //UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0)
+        style.selectedColor = UIColor.black //UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).withAlphaComponent(0.7)
         //style.showBgMaskView = true
         // style.bgMaskViewColor = UIColor.lightGray
         

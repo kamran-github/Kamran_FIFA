@@ -91,8 +91,8 @@ class FixtureOverviewViewController: UIViewController,UITableViewDelegate,UITabl
                     let mili: Double = Double(truncating: (mili as AnyObject) as! NSNumber)
                     let myMilliseconds: UnixTime = UnixTime(mili/1000.0)
                     let dateFormatter = DateFormatter()
-                    //dateFormatter.dateFormat = "dd MMMM yyyy hh:mm a"
-                    //dateFormatter.dateStyle = .short
+                    dateFormatter.dateFormat = "dd MMMM yyyy hh:mm a"
+                    dateFormatter.dateStyle = .short
                     dateFormatter.dateFormat = "HH:mm"
                     lbltime?.text = dateFormatter.string(from: myMilliseconds.dateFull as Date)
                 }
