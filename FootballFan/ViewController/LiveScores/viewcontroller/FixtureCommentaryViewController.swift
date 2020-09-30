@@ -141,8 +141,6 @@ class FixtureCommentaryViewController: UIViewController,UITableViewDelegate,UITa
             cell.vline2?.backgroundColor = UIColor.green
         }
         
-        
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -182,10 +180,14 @@ class FixtureCommentaryViewController: UIViewController,UITableViewDelegate,UITa
                         let status1: Bool = json["success"] as! Bool
                         if(status1){
                             self.arrcommentary = json["json"] as! [AnyObject]
-                            self.storytableview?.reloadData()
+                            if self.arrcommentary.count>0 {
+                               self.storytableview?.reloadData()
+                            } else {
+                                self.addNoIfoLabel()
+                            }
                         }
-                        else{
-                            
+                        else {
+                            self.addNoIfoLabel()
                         }
                     }
                 case .failure(let error):
@@ -202,5 +204,20 @@ class FixtureCommentaryViewController: UIViewController,UITableViewDelegate,UITa
             alertWithTitle(title: nil, message: "Please check your Internet connection.", ViewController: self)
             
         }
+    }
+}
+
+
+extension UIViewController {
+    func addNoIfoLabel() {
+        let infoLabel = UILabel(frame: CGRect(x: 10, y: self.view.frame.size.height/2, width: self.view.frame.size.width-10, height: 30.0))
+        infoLabel.text = "This information is not available"
+        infoLabel.numberOfLines = 0;
+        infoLabel.textAlignment = .center;
+        infoLabel.font = UIFont(name: "HelveticaNeue", size: 15.0)!
+        infoLabel.textColor = .lightGray
+        //infoLabel.sizeToFit()
+        infoLabel.bringSubviewToFront(self.view)
+        self.view.addSubview(infoLabel)
     }
 }

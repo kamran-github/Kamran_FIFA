@@ -205,7 +205,7 @@ class FixtureLineUpViewController: UIViewController,UITableViewDelegate,UITableV
                 
                 if let name = localTeamDetil.name{
                     let  homename = name
-                  //  let  homelogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
+                    //  let  homelogo = (localTeamDetil as AnyObject).value(forKey: "logo_path") as! String
                     //hometeam?.text = homename
                     
                     homeId = localTeamDetil.id ?? 0

@@ -24,12 +24,13 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
     var Allarrfixture: [AnyObject] = []
     var arrfixture: [AnyObject] = []
     var matchFixture : Fixture?
+    var messageLabel = UILabel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
         let longPressGesture_Showpopup:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(Showpopup(_:)))
-        //longPressGesture.minimumPressDuration = 1.0 // 1 second press
         longPressGesture_Showpopup.delegate = self as? UIGestureRecognizerDelegate
         Dropdownlabel?.addGestureRecognizer(longPressGesture_Showpopup)
         Dropdownlabel?.isUserInteractionEnabled = true
@@ -81,6 +82,7 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
                                             if(j == (self.Allarrfixture.count - 1)){
                                                 let dict = self.Allarrfixture[0] as! NSDictionary
                                                 self.Dropdownlabel?.text = "MatchDay \(dict.value(forKey: "name") as? Int ?? 0)"
+                                                self.messageLabel.isHidden = true
                                             }
                                         }
                                     }
@@ -119,31 +121,30 @@ class MatchdayViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         if(tableView == poptable){
-            let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-            messageLabel.text = "No data.\navailable."
+            messageLabel.text = "No matches available"
             messageLabel.numberOfLines = 0;
             messageLabel.textAlignment = .center;
-            messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
+            messageLabel.font = UIFont(name: "HelveticaNeue", size: 15.0)!
             messageLabel.sizeToFit()
             self.storytableview?.backgroundView = messageLabel;
             return 1
-        }
-        else{
+        } else {
             if arrfixture.count > 0 {
                 storytableview?.backgroundView = nil
+                messageLabel.text = ""
                 return arrfixture.count
             } else {
-                let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-                messageLabel.text = "Retrieving data.\nPlease wait."
+                
+                messageLabel.text = "Please wait while loading…"
                 messageLabel.numberOfLines = 0;
                 messageLabel.textAlignment = .center;
-                messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
+                messageLabel.font = UIFont(name: "HelveticaNeue", size: 15.0)!
                 messageLabel.sizeToFit()
                 self.storytableview?.backgroundView = messageLabel;
+                return 0
             }
-            return 0
         }
         
     }

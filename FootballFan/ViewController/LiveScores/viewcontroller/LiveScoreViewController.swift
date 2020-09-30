@@ -289,7 +289,7 @@ extension LiveScoreViewController {
                 messageLabel.text = "No matches available"
                 messageLabel.numberOfLines = 0;
                 messageLabel.textAlignment = .center;
-                messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
+                messageLabel.font = UIFont(name: "HelveticaNeue", size: 15.0)!
                 messageLabel.sizeToFit()
                 self.tableView.backgroundView = messageLabel;
             }
@@ -299,7 +299,7 @@ extension LiveScoreViewController {
             messageLabel.text = "Please wait while loading…"
             messageLabel.numberOfLines = 0;
             messageLabel.textAlignment = .center;
-            messageLabel.font = UIFont(name: "HelveticaNeue", size: 20.0)!
+            messageLabel.font = UIFont(name: "HelveticaNeue", size: 15.0)!
             messageLabel.sizeToFit()
             self.tableView.backgroundView = messageLabel;
             return 0

@@ -18,6 +18,7 @@ class TDSquadViewController: UIViewController, UITableViewDelegate, UITableViewD
     var selectedsegmentindex:Int = 0
     var squadData : SquadModel?
     
+    @IBOutlet var nodataLabel: UILabel!
     @IBOutlet weak var storytableview: UITableView?
     @IBOutlet weak var segments: UISegmentedControl?
     override func viewDidLoad() {
@@ -26,8 +27,6 @@ class TDSquadViewController: UIViewController, UITableViewDelegate, UITableViewD
         storytableview?.delegate = self
         storytableview?.dataSource = self
         self.segments?.layer.cornerRadius = 15.0
-        // self.segmentedControl.layer.borderColor = [UIColor whiteColor].CGColor;
-        // self.segmentedControl.layer.borderWidth = 1.0f;
         self.segments?.layer.masksToBounds = true
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +59,7 @@ class TDSquadViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func getSquadDeatilsAPI(){
         if ClassReachability.isConnectedToNetwork() {
-            //let url = "http://ffapitest.ifootballfan.com:7001/Squad/Team/Season/468/16030"
+//           let url = "http://ffapitest.ifootballfan.com:7001/Squad/Team/Season/468/16030"
             let url = "\(baseurl)/\("Squad/Team/Season")/\(teamId)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
@@ -71,7 +70,7 @@ class TDSquadViewController: UIViewController, UITableViewDelegate, UITableViewD
                             self.squadData = Mapper<SquadModel>().map(JSONObject: json)
                             self.storytableview?.reloadData()
                         }else{
-                            self.alertWithTitle(title: nil, message: ConstantString.apiFailMsg, ViewController: self)
+                            self.storytableview?.isHidden = true
                         }
                     }
                 case .failure(let error):
@@ -118,7 +117,34 @@ extension TDSquadViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44.0
+        if selectedsegmentindex == 0 {
+            if (self.squadData?.json?.teamsquad?[section].lineup!.count)!>0 {
+                self.storytableview?.isHidden = false
+              return 44.0
+            } else {
+                 self.storytableview?.isHidden = true
+               return 0
+            }
+        } else if selectedsegmentindex == 1 {
+            if (self.squadData?.json?.seasonsquad?[section].lineup!.count)!>0 {
+                self.storytableview?.isHidden = false
+              return 44.0
+            } else {
+                 self.storytableview?.isHidden = true
+               return 0
+            }
+        } else if selectedsegmentindex == 2 {
+            if (self.squadData?.json?.fixturesquad?[section].lineup!.count)!>0 {
+                self.storytableview?.isHidden = false
+              return 44.0
+            } else {
+                 self.storytableview?.isHidden = true
+               return 0
+            }
+        } else {
+            return 0
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

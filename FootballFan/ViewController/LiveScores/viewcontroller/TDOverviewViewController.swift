@@ -88,8 +88,8 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
     }
     func teamapiCall(){
         if ClassReachability.isConnectedToNetwork() {
-//            let url = "http://ffapitest.ifootballfan.com:7001/Team/Season/Standing/468/16030"
-            let url = "\(baseurl)/Team/Season/Standing/\(team_id)/\(season_id)"
+           let url = "http://ffapitest.ifootballfan.com:7001/Team/Season/Standing/468/16030"
+         //   let url = "\(baseurl)/Team/Season/Standing/\(team_id)/\(season_id)"
             AF.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json","cache-control": "no-cache",]).responseJSON { response in
                 switch response.result {
                 case .success(let value):
@@ -342,7 +342,7 @@ class TDOverviewViewController: UIViewController,UITableViewDelegate,UITableView
                                             }
                                         
                                             let possessionvalue = Float(statsdic.value(forKey: "avg_ball_possession_percentage") as? String ?? "0.0")
-                                            lblpossessionvalue?.text = "\(String(describing: possessionvalue!))"
+                                            lblpossessionvalue?.text = "\(String(describing: possessionvalue!))"+"%"
                                             possession?.progress = possessionvalue!/100
                                         }
                                     }
